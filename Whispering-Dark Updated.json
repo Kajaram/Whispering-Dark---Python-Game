@@ -1,0 +1,187 @@
+{
+    "locations": [
+      {
+        "id": "cabin",
+        "name": "The Cabin",
+        "description": "A safe haven filled with resources to heal after battles, available anytime.",
+        "room-text": ["You enter the cabin. In the middle of the room there is a large table cluttered with camp related items.", "You enter the cabin.", "You picked up the map from the table. You are now able to access all locations."],
+        "items": ["first_aid", "map"],
+        "exits": ["barn", "church_entrance","radio_tower"]
+      },
+      {
+        "id": "trail",
+        "name": "The Trail",
+        "description": "its a trail towards  the radio tower.",
+        "room-text":["You head down the trail toward the radio tower. From within the trees you hear a low growl..", "As you continue forward, you see a large creature pounce from the treeline. \n Its bounding towards you, gaining speed with every stride. \n Defend yourself!", 
+        "The wendigo pounces, with its massive claws it slashes your throat. \n While your life fades you watch the Wendigo bare its fangs, \n preparing to devour its latest prey.", "The Wendigo pounces, as it raises its arm to deal a blow which would surely be fatal, you draw the sacred blade. \n Right before impact, you swing with all of your might. The blow connects. \n The wenigo wails in pain as the blade sinks into its sternum. \n You watch as the creature collapses and draws its final breath."],
+        "exits": ["cabin","radio_tower"]
+      },
+      {
+        "id": "radio_tower",
+        "name": "The Radio Tower",
+        "description": "The final goal. Accessible after retrieving the sacred weapon. Without it, the Wendigo's attack is lethal. This is the only way back home.",
+        "room-text": ["You climb the stairs to the top of the radio tower. \n Across the room there is a table with an old radio ontop.",  "The radio is off..",
+        "The radio turns on! You hear static over the headphones.\n The radio prompts you for a channel..", "You set the channel to the emergency response channel.. \n  There's someone on the other side! \n 'Please help us!' you cry.",
+        "After explaining what has happened, the operator on the other end confirms your situation \n and dispatches emergency services. 'We'll be there by morning. Hold tight' he says."],
+        "items":["old_radio"],
+        "requirements": ["silver_axe"],
+        "exits": ["trail"]
+      },
+      {
+        "id": "barn",
+        "name": "The Barn",
+        "description": "Always accessible. Houses an old hunting rifle and a flashlight.",
+        "room-text":["You enter the barn, to your left you seen an old workbench with various tools. A flashlight sits on the top shelf.\n To your right there is an old gun case."],
+        "items": ["hunting_rifle", "flashlight"],
+        "exits": ["cabin"]
+      },
+
+      {
+        "id": "church_entrance",
+        "name": "The Church",
+        "description": "The foreboding entrance to the Cult's church, shrouded in darkness.",
+        "room-text":["You enter the front of the church. All of the windows are boarded, blocking any light from entering. \n You can tell the room is large by the echo of your foot steps.", 
+        "There is a large door to your left and a latch on the floor", "The latch is locked.", "The latch opens! You find stairs heading into the church's basement."],
+        "requirements": ["flashlight"],
+        "exits": ["church_basement","cabin","church_library"]
+      },
+      {
+        "id": "church_library",
+        "name": "Church Library",
+        "description": "Contains ancient texts explaining the origin of the Wendigo and its weaknesses.",
+        "room-text":["The chamber is filled with bookshelves as far as the eye can see, \n each packed with books which appear to be even older than the church itself.  \n A book with a red spine catches your eye. \n across the room you see a large chest with a riddle inscribed above a one word combination lock",
+        "You skim through the old text until you come across a passage about an ancient beast.\n The passage reads: 'The Wendigo: a supernatural being belonging to the spiritual traditions of Algonquian-speaking First Nations in North America. \n Windigos are described as powerful monsters that have a desire to kill and eat their victims. \n In most legends, humans transform into windigos because of their greed or weakness.'", "You approach the chest. It requires an 8 letter combination to open.",
+        "The chest opens! Inside you find a key with letters from a strange langauge scratched into its side."],
+        "items": ["ancient_texts"],
+        "exits": ["church_entrance"],
+        "puzzle": 
+          {
+            "description": "A chest with a letter combination lock, opened by solving a riddle.",
+            "riddle": "It can not be seen whenever it's there. \n It fills up a room, it's much like the air.\n It can not be touched, there's nothing to hear. \n It is quite harmless, there's nothing to fear." ,
+            "solution": ["darkness","Darkness"],
+            "reward": "basement_key"
+          }
+      },
+      {
+        "id": "church_basement",
+        "name": "Church Basement",
+        "description": "A locked basement holding crucial items for your quest.",
+        "room-text":["You find a weapon whose blade is coated in silver.\n It glistens in the light of your flashlight. \n On its hilt you see words inscribed in the same language as earlier."],
+        "requirements": ["basement_key"],
+        "items": ["silver_axe"]
+      }
+    ],
+    
+    "items": [
+      {
+        "id": "first_aid",
+        "name": "Medical kit",
+        "description": "Restores a significant amount of health.",
+        "location": "cabin"
+      },
+      {
+        "id": "hunting_rifle",
+        "name": "Old Hunting Rifle",
+        "description": "An old but reliable rifle, useful for defending against threats.",
+        "location": "barn"
+      },
+      {
+        "id": "basement_key",
+        "name": "Basement Key",
+        "description": "The key to unlock the door to the basement.",
+        "location": "church_library"
+      },
+      {
+        "id": "silver_axe",
+        "name": "Silver axe",
+        "description": "The only weapon capable of defeating the Wendigo, hidden in the church basement.",
+        "location": "church_basement"
+      }
+    ],
+    
+    
+    
+    
+    "characters": [
+      {
+        "id": "Nate",
+        "name": "Nate Stevens",
+        "role": "Leader of the group, tasked with keeping everyone safe.",
+        "location": "cabin"
+      },
+      {
+        "id": "Sophia",
+        "name": "Sophia Turner",
+        "role": "Girlfriend of Nate and friends of others.",
+        "location": "cabin"
+      },
+      {
+        "id": "Rohan",
+        "name": "Rohan Siva",
+        "role": "A good friend in your group.",
+        "location": "cabin"
+      },
+      {
+        "id": "Ava",
+        "name": "Ava Chen",
+        "role": "A good friend in your group.",
+        "location": "cabin"
+      },
+      {
+        "id": "Daniel",
+        "name": "Daniel Martinez",
+        "role": "A good friend in your group.",
+        "location": "cabin"
+      },
+      {
+        "id": "Evelyn",
+        "name": "Evelyn Halloway",
+        "role": "Creepy girl that was sitting beside you in the bus, somehow escaped to the cabin during the massacre.",
+        "location": "cabin"
+      },
+      {
+        "id": "wendigo",
+        "name": "The Wendigo",
+        "description": "A malevolent creature stalking the players, its origins explained in the ancient texts.",
+        "location": "variable"
+      }
+    ],
+    
+    
+    
+    
+    
+    "events": [
+      {
+        "id": "intro_cutscene",
+        "name": "Campfire Massacre",
+        "description": "What was meant to be a fun and carefree night, quickly turned into a living nightmare.",
+        "sentences": ["Having recently arrived to the campsite where Nate and his friends would be spending their summer as camp counselors, they were determined to make this their best summer yet.",
+                     "To kick off ther first night's bonfire, the group decided to quietly slip away for a drink.",
+                     "Returning to the firepit, a horrific scene awaited them. The once cheery campsite was now covered with the remains of their peers.",
+                     "Petrified, Nate and his friends made the quick decision to retreat to a nearby cabin for safety."]
+      },
+      {
+        "id": "church_discovery",
+        "name": "Discovering the Church",
+        "description": "The event where the group discovers the church and its secrets.",
+        "requirements": ["flashlight"],
+        "outcome": ["access to church_basement", "access to church_library"]
+      },
+      {
+        "id": "basement_confrontation",
+        "name": "Defeating the cult members",
+        "description": "Defeating the cult members is key to recovering the sacred weapon.",
+        "requirements": ["basement_key"],
+        "outcome": ["access to radio_tower"]
+      },
+      {
+        "id": "wendigo_confrontation",
+        "name": "Confronting the Wendigo",
+        "description": "The final battle with the Wendigo at the radio tower, requiring the sacred weapon.",
+        "requirements": ["silver_axe"],
+        "outcome": "game_completion"
+      }
+    ]
+  }
+  
