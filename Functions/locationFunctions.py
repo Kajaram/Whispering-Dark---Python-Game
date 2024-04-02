@@ -1,13 +1,3 @@
-import json 
-import Functions.inventoryFunctions as inventoryFunctions
-
-# Load game data from JSON
-def load_game_data(filename):
-    with open(filename, 'r') as file:
-        game_data = json.load(file)
-    return game_data['locations']
-
-# Find a location by ID
 def get_location(location_id, locations):
     for location in locations:
         if location['id'] == location_id:
@@ -23,4 +13,3 @@ def describe_location(location):
     #     destination = get_location(destination_id, locations)
     #     if destination:
     #         print(f"To the {direction} is {destination['name']}.")
-
