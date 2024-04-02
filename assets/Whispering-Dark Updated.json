@@ -17,13 +17,13 @@
         "description": "its a trail towards  the radio tower.",
         "room-text":["You head down the trail toward the radio tower. From within the trees you hear a low growl..", "As you continue forward, you see a large creature pounce from the treeline. \n Its bounding towards you, gaining speed with every stride. \n Defend yourself!", 
         "The wendigo pounces, with its massive claws it slashes your throat. \n While your life fades you watch the Wendigo bare its fangs, \n preparing to devour its latest prey.", "The Wendigo pounces, as it raises its arm to deal a blow which would surely be fatal, you draw the sacred blade. \n Right before impact, you swing with all of your might. The blow connects. \n The wenigo wails in pain as the blade sinks into its sternum. \n You watch as the creature collapses and draws its final breath."],
-        "exits": {"south" : "cabin" , "north" : "radio_tower"}
+        "exits": {"east" : "cabin" , "north" : "radio_tower"}
       },
       {
         "id": "radio_tower",
         "name": "The Radio Tower",
         "description": "The final goal. Accessible after retrieving the sacred weapon. Without it, the Wendigo's attack is lethal. This is the only way back home.",
-        "room-text": ["You climb the stairs to the top of the radio tower. \n Across the room there is a table with an old radio ontop.",
+        "room-text": ["You climb the stairs to the top of the radio tower.\nAcross the room there is a table with an old radio ontop.",
           "The radio is off..", "The radio turns on! You hear static over the headphones.\n The radio prompts you for a channel..", 
           "You set the channel to the emergency response channel.. \n  There's someone on the other side! \n 'Please help us!' you cry.",
           "After explaining what has happened, the operator on the other end confirms your situation \n and dispatches emergency services. 'We'll be there by morning. Hold tight' he says."],
@@ -34,7 +34,7 @@
       {
         "id": "barn",
         "name": "The Barn",
-        "description": "Always accessible. Houses an old hunting rifle and a flashlight.",
+        "description": "You enter an old barn.\nThere are shelves with miscellaneous items on almost every wall.",
         "room-text":["You enter the barn, to your left you seen an old workbench with various tools. A flashlight sits on the top shelf.\n To your right there is an old gun case."],
         "items": ["hunting_rifle", "flashlight"],
         "exits": {"west" : "cabin"}
@@ -44,7 +44,7 @@
         "id": "church_entrance",
         "name": "The Church",
         "description": "The foreboding entrance to the Cult's church, shrouded in darkness.",
-        "room-text":["You enter the front of the church. All of the windows are boarded, blocking any light from entering. \n You can tell the room is large by the echo of your foot steps.", 
+        "room-text":["You enter the front of the church. All of the windows are boarded, blocking any light from entering.\nYou can tell the room is large by the echo of your foot steps.", 
         "There is a large door to your left and a latch on the floor", "The latch is locked.", "The latch opens! You find stairs heading into the church's basement."],
         "requirements": ["flashlight"],
         "exits": {"north" : "church_basement","south" :"cabin", "west" : "church_library"}
@@ -72,7 +72,8 @@
         "description": "A locked basement holding crucial items for your quest.",
         "room-text":["You find a weapon whose blade is coated in silver.\n It glistens in the light of your flashlight. \n On its hilt you see words inscribed in the same language as earlier."],
         "requirements": ["basement_key"],
-        "items": ["silver_axe"]
+        "items": ["silver_axe"],
+        "exits" : {"south" : "church_entrance"}
       }
     ],
     

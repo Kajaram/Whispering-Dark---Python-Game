@@ -6,8 +6,8 @@ def get_location(location_id, locations):
 
 # Display current location details
 def describe_location(location):
-    print("\n Current location: " + location['name'])
-    print(location['description'])
+    print("\nCurrent location: " + location['name'])
+    print(location['room-text'][0])
 
     # for direction, destination_id in location.get('exits', {}).items():
     #     destination = get_location(destination_id, locations)
