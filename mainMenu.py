@@ -1,6 +1,7 @@
 # mainMenu.py
 import json
-
+def menu() :
+    return
 # Save Function
 def save_game(game_state, filename='savegame.json'):
     try:

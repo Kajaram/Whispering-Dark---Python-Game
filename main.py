@@ -2,7 +2,7 @@ from Functions.locationFunctions import get_location, describe_location
 from Functions.movement import move_player
 from Functions.engine import load_game_data
 from Functions.intro import introSequence
-from mainMenu import Menu
+from mainMenu import menu
 import os
 
 locations = load_game_data('assets/Whispering-Dark Updated.json')  # Adjust the path as necessary
@@ -11,7 +11,7 @@ current_location = get_location('cabin', locations)  # Starting location
 # Main game loop
 if __name__ == '__main__':
     
-    # mainMenu()
+    # menu()
     introSequence()
 
     locations = load_game_data('assets/Whispering-Dark Updated.json')  # Adjust the path as necessary
