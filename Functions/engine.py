@@ -16,13 +16,13 @@ def get_location(location_id, locations):
 
 # Display current location details
 def describe_location(location):
-    print("\n" + location['name'])
+    print("\n Current location: " + location['name'])
     print(location['description'])
 
-    for direction, destination_id in location.get('exits', {}).items():
-        destination = get_location(destination_id, locations)
-        if destination:
-            print(f"To the {direction} is {destination['name']}.")
+    # for direction, destination_id in location.get('exits', {}).items():
+    #     destination = get_location(destination_id, locations)
+    #     if destination:
+    #         print(f"To the {direction} is {destination['name']}.")
 
 # Handle movement commands
 def move_player(command, current_location, locations):

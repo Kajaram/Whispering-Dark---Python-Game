@@ -160,9 +160,9 @@
         "id": "intro_cutscene",
         "name": "Campfire Massacre",
         "description": "What was meant to be a fun and carefree night, quickly turned into a living nightmare.",
-        "sentences": ["Having recently arrived to the campsite where Nate and his friends would be spending their summer as camp counselors, they were determined to make this their best summer yet.",
+        "sentences": ["Having recently arrived to the campsite where Nate and his friends would be spending their summer as camp counselors, \n they were determined to make this their best summer yet.",
                      "To kick off ther first night's bonfire, the group decided to quietly slip away for a drink.",
-                     "Returning to the firepit, a horrific scene awaited them. The once cheery campsite was now covered with the remains of their peers.",
+                     "Returning to the firepit, a horrific scene awaited them.\nThe once cheery campsite was now covered with the remains of their peers.",
                      "Petrified, Nate and his friends made the quick decision to retreat to a nearby cabin for safety."]
       },
       {
