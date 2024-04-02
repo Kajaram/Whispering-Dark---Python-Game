@@ -1,4 +1,4 @@
-from locationFunctions import get_location
+from Functions.locationFunctions import get_location
 
 def move_player(command, current_location, locations):
     if command in current_location.get('exits', {}):
