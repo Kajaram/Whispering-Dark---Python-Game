@@ -1,6 +1,7 @@
 from Functions.engine import load_game_data, get_location, describe_location, move_player
-from intro import introSequence
+from Functions.intro import introSequence
 from mainMenu import Menu
+import os
 
 locations = load_game_data('Whispering-Dark Updated.json')  # Adjust the path as necessary
 current_location = get_location('cabin', locations)  # Starting location
@@ -14,12 +15,12 @@ if __name__ == '__main__':
     locations = load_game_data('Whispering-Dark Updated.json')  # Adjust the path as necessary
     current_location = get_location('cabin', locations)  # Starting location
     
-    print("Welcome to Whispering Dark. Type 'quit' to exit at any time.")
+    print("\nWelcome to Whispering Dark. Type 'quit' to exit at any time.")
 
     while True:
-
+        os.system('clear')
         describe_location(current_location)
-        command = input("\nWhat do you want to do? ").strip().lower()
+        command = input("\nWhat do you want to do?\n").strip().lower()
         
         if command == 'quit':
             print("Thanks for playing. Goodbye!")

@@ -9,7 +9,7 @@
          "You enter the cabin.", "You picked up the map from the table. You are now able to access all locations."],
 
         "items": ["first_aid", "map"],
-        "exits": ["barn", "church_entrance","radio_tower"]
+        "exits": {"east" : "barn", "north":"church_entrance","west":"trail"}
       },
       {
         "id": "trail",
@@ -17,7 +17,7 @@
         "description": "its a trail towards  the radio tower.",
         "room-text":["You head down the trail toward the radio tower. From within the trees you hear a low growl..", "As you continue forward, you see a large creature pounce from the treeline. \n Its bounding towards you, gaining speed with every stride. \n Defend yourself!", 
         "The wendigo pounces, with its massive claws it slashes your throat. \n While your life fades you watch the Wendigo bare its fangs, \n preparing to devour its latest prey.", "The Wendigo pounces, as it raises its arm to deal a blow which would surely be fatal, you draw the sacred blade. \n Right before impact, you swing with all of your might. The blow connects. \n The wenigo wails in pain as the blade sinks into its sternum. \n You watch as the creature collapses and draws its final breath."],
-        "exits": ["cabin","radio_tower"]
+        "exits": {"south" : "cabin" , "north" : "radio_tower"}
       },
       {
         "id": "radio_tower",
@@ -29,7 +29,7 @@
           "After explaining what has happened, the operator on the other end confirms your situation \n and dispatches emergency services. 'We'll be there by morning. Hold tight' he says."],
         "items":["old_radio"],
         "requirements": ["silver_axe"],
-        "exits": ["trail"]
+        "exits": {"east" : "trail"}
       },
       {
         "id": "barn",
@@ -37,7 +37,7 @@
         "description": "Always accessible. Houses an old hunting rifle and a flashlight.",
         "room-text":["You enter the barn, to your left you seen an old workbench with various tools. A flashlight sits on the top shelf.\n To your right there is an old gun case."],
         "items": ["hunting_rifle", "flashlight"],
-        "exits": ["cabin"]
+        "exits": {"west" : "cabin"}
       },
 
       {
@@ -47,7 +47,7 @@
         "room-text":["You enter the front of the church. All of the windows are boarded, blocking any light from entering. \n You can tell the room is large by the echo of your foot steps.", 
         "There is a large door to your left and a latch on the floor", "The latch is locked.", "The latch opens! You find stairs heading into the church's basement."],
         "requirements": ["flashlight"],
-        "exits": ["church_basement","cabin","church_library"]
+        "exits": {"north" : "church_basement","south" :"cabin", "west" : "church_library"}
       },
       {
         "id": "church_library",
@@ -57,7 +57,7 @@
         "You skim through the old text until you come across a passage about an ancient beast.\n The passage reads: 'The Wendigo: a supernatural being belonging to the spiritual traditions of Algonquian-speaking First Nations in North America. \n Windigos are described as powerful monsters that have a desire to kill and eat their victims. \n In most legends, humans transform into windigos because of their greed or weakness.'", "You approach the chest. It requires an 8 letter combination to open.",
         "The chest opens! Inside you find a key with letters from a strange langauge scratched into its side."],
         "items": ["ancient_texts"],
-        "exits": ["church_entrance"],
+        "exits": {"south" : "church_entrance"},
         "puzzle": 
           {
             "description": "A chest with a letter combination lock, opened by solving a riddle.",
@@ -102,9 +102,6 @@
         "location": "church_basement"
       }
     ],
-    
-    
-    
     
     "characters": [
       {
@@ -160,7 +157,7 @@
         "id": "intro_cutscene",
         "name": "Campfire Massacre",
         "description": "What was meant to be a fun and carefree night, quickly turned into a living nightmare.",
-        "sentences": ["Having recently arrived to the campsite where Nate and his friends would be spending their summer as camp counselors, \n they were determined to make this their best summer yet.",
+        "sentences": ["\nHaving recently arrived to the campsite where Nate and his friends would be spending their summer as camp counselors,\nthey were determined to make this their best summer yet.",
                      "To kick off ther first night's bonfire, the group decided to quietly slip away for a drink.",
                      "Returning to the firepit, a horrific scene awaited them.\nThe once cheery campsite was now covered with the remains of their peers.",
                      "Petrified, Nate and his friends made the quick decision to retreat to a nearby cabin for safety."]

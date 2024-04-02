@@ -16,7 +16,7 @@ def introSequence():
         print(sentence)
         user_input = input()
         if user_input.lower() == 'q':
-            break
+            exit
 
 
     
