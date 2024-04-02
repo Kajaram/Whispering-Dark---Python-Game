@@ -1,7 +1,7 @@
 player_inventory = []
 current_location_items = ['flashlight', 'silver_axe']
 
-def use_item(item_name):
+def use_item(item_name, current_location):
     if item_name in player_inventory:
         if item_name == 'silver_axe' and current_location['id'] == 'wendigo_lair':
             print("You use the silver axe to defeat the Wendigo!")
