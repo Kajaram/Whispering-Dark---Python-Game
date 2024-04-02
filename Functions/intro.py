@@ -9,7 +9,7 @@ def read_intro_cutscene(file_path):
         return []
 
 def introSequence():
-    intro_cutscene_sentences = read_intro_cutscene('Whispering-Dark Updated.json') 
+    intro_cutscene_sentences = read_intro_cutscene('assets/Whispering-Dark Updated.json') 
 
     print("Press Enter to display the next line of text")
     for sentence in intro_cutscene_sentences:
