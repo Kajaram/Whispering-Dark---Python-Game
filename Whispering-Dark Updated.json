@@ -4,7 +4,10 @@
         "id": "cabin",
         "name": "The Cabin",
         "description": "A safe haven filled with resources to heal after battles, available anytime.",
-        "room-text": ["You enter the cabin. In the middle of the room there is a large table cluttered with camp related items.", "You enter the cabin.", "You picked up the map from the table. You are now able to access all locations."],
+
+        "room-text": ["You enter the cabin. In the middle of the room there is a large table cluttered with camp related items.",
+         "You enter the cabin.", "You picked up the map from the table. You are now able to access all locations."],
+
         "items": ["first_aid", "map"],
         "exits": ["barn", "church_entrance","radio_tower"]
       },
@@ -20,9 +23,10 @@
         "id": "radio_tower",
         "name": "The Radio Tower",
         "description": "The final goal. Accessible after retrieving the sacred weapon. Without it, the Wendigo's attack is lethal. This is the only way back home.",
-        "room-text": ["You climb the stairs to the top of the radio tower. \n Across the room there is a table with an old radio ontop.",  "The radio is off..",
-        "The radio turns on! You hear static over the headphones.\n The radio prompts you for a channel..", "You set the channel to the emergency response channel.. \n  There's someone on the other side! \n 'Please help us!' you cry.",
-        "After explaining what has happened, the operator on the other end confirms your situation \n and dispatches emergency services. 'We'll be there by morning. Hold tight' he says."],
+        "room-text": ["You climb the stairs to the top of the radio tower. \n Across the room there is a table with an old radio ontop.",
+          "The radio is off..", "The radio turns on! You hear static over the headphones.\n The radio prompts you for a channel..", 
+          "You set the channel to the emergency response channel.. \n  There's someone on the other side! \n 'Please help us!' you cry.",
+          "After explaining what has happened, the operator on the other end confirms your situation \n and dispatches emergency services. 'We'll be there by morning. Hold tight' he says."],
         "items":["old_radio"],
         "requirements": ["silver_axe"],
         "exits": ["trail"]
