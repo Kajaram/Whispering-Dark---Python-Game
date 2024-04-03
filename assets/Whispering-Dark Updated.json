@@ -5,17 +5,17 @@
         "name": "The Cabin",
         "description": "A safe haven filled with resources to heal after battles, available anytime.",
 
-        "room-text": ["You enter the cabin. In the middle of the room there is a large table cluttered with camp related items.",
+        "room-text": ["\nYou enter the cabin. In the middle of the room there is a large table cluttered with camp related items.",
          "You enter the cabin.", "You picked up the map from the table. You are now able to access all locations."],
 
-        "items": ["first_aid", "map"],
+        "items": ["first_aid", "map","electronic_repair_kit"],
         "exits": {"east" : "barn", "north":"church_entrance","west":"trail"}
       },
       {
         "id": "trail",
         "name": "The Trail",
         "description": "its a trail towards  the radio tower.",
-        "room-text":["You head down the trail toward the radio tower. From within the trees you hear a low growl..", "As you continue forward, you see a large creature pounce from the treeline. \n Its bounding towards you, gaining speed with every stride. \n Defend yourself!", 
+        "room-text":["\nYou head down a dark trail toward the radio tower. From within the trees you hear a low growl..", "As you continue forward, you see a large creature pounce from the treeline. \n Its bounding towards you, gaining speed with every stride. \n Defend yourself!", 
         "The wendigo pounces, with its massive claws it slashes your throat. \n While your life fades you watch the Wendigo bare its fangs, \n preparing to devour its latest prey.", "The Wendigo pounces, as it raises its arm to deal a blow which would surely be fatal, you draw the sacred blade. \n Right before impact, you swing with all of your might. The blow connects. \n The wenigo wails in pain as the blade sinks into its sternum. \n You watch as the creature collapses and draws its final breath."],
         "exits": {"east" : "cabin" , "west" : "radio_tower"}
       },
@@ -23,7 +23,7 @@
         "id": "radio_tower",
         "name": "The Radio Tower",
         "description": "The final goal. Accessible after retrieving the sacred weapon. Without it, the Wendigo's attack is lethal. This is the only way back home.",
-        "room-text": ["You climb the stairs to the top of the radio tower.\nAcross the room there is a table with an old radio ontop.",
+        "room-text": ["\nYou climb the stairs to the top of the radio tower.\nAcross the room there is a table with an old radio ontop.",
           "The radio is off..", "The radio turns on! You hear static over the headphones.\n The radio prompts you for a channel..", 
           "You set the channel to the emergency response channel.. \n  There's someone on the other side! \n 'Please help us!' you cry.",
           "After explaining what has happened, the operator on the other end confirms your situation \n and dispatches emergency services. 'We'll be there by morning. Hold tight' he says."],
@@ -72,82 +72,119 @@
         "description": "A locked basement holding crucial items for your quest.",
         "room-text":["You find a weapon whose blade is coated in silver.\n It glistens in the light of your flashlight. \n On its hilt you see words inscribed in the same language as earlier."],
         "requirements": ["basement_key"],
-        "items": ["silver_axe"],
+        "items": ["silver_axe","Protective_Talisman"],
         "exits" : {"south" : "church_entrance"}
       }
     ],
     
-    "items": [
-      {
-        "id": "first_aid",
+    "items": {
+      "first_aid" : {
         "name": "Medical kit",
         "description": "Restores a significant amount of health.",
         "location": "cabin"
       },
+      
+      "old_map" :  {
+        "id": "old_map",
+        "name": "map",
+        "description": "Map of camp and nearby area",
+        "location": "cabin"
+      },
+      "old_radio" :
       {
-        "id": "hunting_rifle",
+        "name": "radio",
+        "description": "A radio to contact the outside world",
+        "location": "radio_tower"
+      },
+      
+      "hunting_rifle": {
         "name": "Old Hunting Rifle",
+        "damage" : 5,
         "description": "An old but reliable rifle, useful for defending against threats.",
         "location": "barn"
       },
-      {
+      "Flash_light" : {
+        "name": "light",
+        "description": "A device to see in the dark",
+        "location": "barn"
+      },
+      "ancient_text" : {
+        "id": "ancient_text",
+        "name": "book",
+        "description": "ancient texts explaining the origin of the Wendigo",
+        "location": "church_library"
+      },
+      "basement_key" : {
         "id": "basement_key",
         "name": "Basement Key",
         "description": "The key to unlock the door to the basement.",
         "location": "church_library"
       },
-      {
+      "silver_axe" : {
         "id": "silver_axe",
+        "damage" : 50,
         "name": "Silver axe",
         "description": "The only weapon capable of defeating the Wendigo, hidden in the church basement.",
         "location": "church_basement"
+      },
+      "Electronic_Repair_kit" : {
+        "id": "Electronic_Repair_kit",
+        "name": "Repair kit",
+        "description": "A kit containing wire, electrical tape, screwdrivers, and other tools for fixing electrical equipment.",
+        "location": "cabin"
+      },
+      "Protective Talisman" : {
+        "id": "Protective Talisman",
+        "name": "Necklace",
+        "description": "A charm said to ward off dark forces and provide protection against supernatural harm..",
+        "location": "church_basement"
       }
-    ],
+    },
     
-    "characters": [
-      {
+    "characters": {
+      "Nate" : {
         "id": "Nate",
         "name": "Nate Stevens",
         "role": "Leader of the group, tasked with keeping everyone safe.",
         "location": "cabin"
       },
-      {
+      "Sophia" : {
         "id": "Sophia",
         "name": "Sophia Turner",
         "role": "Girlfriend of Nate and friends of others.",
         "location": "cabin"
       },
-      {
+      "Rohan" : {
         "id": "Rohan",
         "name": "Rohan Siva",
         "role": "A good friend in your group.",
         "location": "cabin"
       },
-      {
+      "Ava" : {
         "id": "Ava",
         "name": "Ava Chen",
         "role": "A good friend in your group.",
         "location": "cabin"
       },
-      {
+      "Daniel" : {
         "id": "Daniel",
         "name": "Daniel Martinez",
         "role": "A good friend in your group.",
         "location": "cabin"
       },
-      {
+      "Evelyn" : {
         "id": "Evelyn",
         "name": "Evelyn Halloway",
         "role": "Creepy girl that was sitting beside you in the bus, somehow escaped to the cabin during the massacre.",
         "location": "cabin"
       },
-      {
+      "wendigo" : {
         "id": "wendigo",
         "name": "The Wendigo",
         "description": "A malevolent creature stalking the players, its origins explained in the ancient texts.",
         "location": "variable"
       }
-    ],
+    },
     
     
     
