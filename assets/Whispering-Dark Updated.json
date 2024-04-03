@@ -17,7 +17,7 @@
         "description": "its a trail towards  the radio tower.",
         "room-text":["You head down the trail toward the radio tower. From within the trees you hear a low growl..", "As you continue forward, you see a large creature pounce from the treeline. \n Its bounding towards you, gaining speed with every stride. \n Defend yourself!", 
         "The wendigo pounces, with its massive claws it slashes your throat. \n While your life fades you watch the Wendigo bare its fangs, \n preparing to devour its latest prey.", "The Wendigo pounces, as it raises its arm to deal a blow which would surely be fatal, you draw the sacred blade. \n Right before impact, you swing with all of your might. The blow connects. \n The wenigo wails in pain as the blade sinks into its sternum. \n You watch as the creature collapses and draws its final breath."],
-        "exits": {"east" : "cabin" , "north" : "radio_tower"}
+        "exits": {"east" : "cabin" , "west" : "radio_tower"}
       },
       {
         "id": "radio_tower",

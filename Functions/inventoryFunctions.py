@@ -1,4 +1,4 @@
-from locationFunctions import get_location
+from Functions.locationFunctions import get_location
 
 def use_item(item_name, current_location, player_inventory):
     if item_name in player_inventory:
