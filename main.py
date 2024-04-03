@@ -3,7 +3,7 @@ from Functions.movement import move_player
 from Functions.inventoryFunctions import pick_up_item, use_item
 from Functions.engine import load_game_data
 from Functions.intro import introSequence
-from Functions.quickTime import inputTimer
+from Functions.quickTime import timer
 import os
 import time
 
@@ -49,7 +49,8 @@ if __name__ == '__main__':
                     describe_location(current_location)
 
                     if current_location['id'] == 'trail':
-                        inputTimer(7 , "The wendigo bounds towards you! What will you do?")
+                        timer(7)
+                        
                     else:    
                         continue
 
