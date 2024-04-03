@@ -34,7 +34,6 @@ if __name__ == '__main__':
             if not moved:
                 print("You can't move in that direction.")
 
-
             else:
                 continue
 
