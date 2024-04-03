@@ -57,7 +57,7 @@
         "You skim through the old text until you come across a passage about an ancient beast.\n The passage reads: 'The Wendigo: a supernatural being belonging to the spiritual traditions of Algonquian-speaking First Nations in North America. \n Windigos are described as powerful monsters that have a desire to kill and eat their victims. \n In most legends, humans transform into windigos because of their greed or weakness.'", "You approach the chest. It requires an 8 letter combination to open.",
         "The chest opens! Inside you find a key with letters from a strange langauge scratched into its side."],
         "items": ["ancient_texts"],
-        "exits": {"south" : "church_entrance"},
+        "exits": {"east" : "church_entrance"},
         "puzzle": 
           {
             "description": "A chest with a letter combination lock, opened by solving a riddle.",
