@@ -58,7 +58,7 @@ if __name__ == '__main__':
                     describe_location(current_location)
 
                     if current_location['id'] == 'trail':
-                        fightFunc(player, wendigo, )
+                        fightFunc(player, wendigo, current_location, locations)
                         
                         
                     else:    
