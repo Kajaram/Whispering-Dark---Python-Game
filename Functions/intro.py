@@ -1,6 +1,6 @@
 import json
 
-def read_intro_cutscene(file_path):
+def read_intro_cutscene(file_path, sequence):
     with open(file_path, 'r') as file:
         game_data = json.load(file)
         for event in game_data['events']:
@@ -8,15 +8,15 @@ def read_intro_cutscene(file_path):
                 return event['sentences']
         return []
 
-def introSequence():
-    intro_cutscene_sentences = read_intro_cutscene('assets/Whispering-Dark Updated.json') 
-
-    print("Press Enter to display the next line of text")
+def sequence(sequenceName):
+    intro_cutscene_sentences = read_intro_cutscene('assets/Whispering-Dark Updated.json', sequenceName) 
+    print("\nPress Enter to display the next line of text")
+    print("\nEnter 's' to skip")
     for sentence in intro_cutscene_sentences:
         print(sentence)
         user_input = input()
-        if user_input.lower() == 'q':
-            exit
+        if user_input.lower() == 's':
+            break
 
 
     

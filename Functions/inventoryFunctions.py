@@ -16,11 +16,13 @@ def use_item(item_name, current_location, player_inventory):
 
 # Example of picking up an item
 def pick_up_item(item_name, player_inventory, current_location):
+    
     current_location_items = current_location['items']
     if item_name in current_location_items:
         player_inventory.append(item_name)
         current_location_items.remove(item_name)
         print(f"Picked up {item_name}.")
+        time.sleep(3)
     
     elif item_name in player_inventory:
         print(item_name + "is already in your inventory.")

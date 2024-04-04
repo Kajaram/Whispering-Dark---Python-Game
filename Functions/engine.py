@@ -24,3 +24,9 @@ def describe_location(location):
     #     if destination:
     #         print(f"To the {direction} is {destination['name']}.")
 
+
+def check_event_happened(event_id, game_data):
+    for event in game_data["events"]:
+        if event["id"] == event_id:
+            return event["happened"]
+    return None
