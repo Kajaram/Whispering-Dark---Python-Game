@@ -8,7 +8,8 @@ from Objects.Character import Character
 from Functions.fight import fightFunc
 import os
 import time
-import sys
+# import sys
+# sys.path.append('c:\python312\lib\site-packages')
 
 player = Character(100, 'player')
 wendigo = Character(200, 'wendigo', 40)
@@ -20,12 +21,10 @@ rohan = Character(100)
 ava = Character(100)
 daniel = Character(100)
 
-
-
-
-sys.path.append('c:\python312\lib\site-packages')
-
-
+locations = load_game_data('assets/Whispering-Dark Updated.json', 'locations') 
+dialogue = load_game_data('assets/Whispering-Dark Updated.json', 'dialogue') 
+items = load_game_data('assets/Whispering-Dark Updated.json', 'items') 
+current_location = get_location('cabin', locations) 
 
 # Main game loop
 if __name__ == '__main__':
@@ -34,11 +33,6 @@ if __name__ == '__main__':
     myName = input('\nEnter your Name:')
     print(myName)
     player.setCustomName(myName)
-
-    locations = load_game_data('assets/Whispering-Dark Updated.json', 'locations') 
-    dialogue = load_game_data('assets/Whispering-Dark Updated.json', 'dialogue') 
-    items = load_game_data('assets/Whispering-Dark Updated.json', 'items') 
-    current_location = get_location('cabin', locations) 
 
     # menu()
     # introSequence()
@@ -50,16 +44,21 @@ if __name__ == '__main__':
 
         os.system('cls')
         describe_location(current_location)
+        print(current_location['items'])
         command = input("\nWhat do you want to do?\n").strip().lower()
         command = command.split()
         
         
         if len(command) > 0:
             if command[0] == 'quit':
-                print("Thanks for playing. Goodbye!")
+                print(f"Thanks for playing  {player.getCustomName()}. Goodbye!")
                 time.sleep(3)
                 # os.system('cls')
                 break
+
+            elif command[0] == 'inventory':
+                player.showInventory()
+                time.sleep(3)
 
             elif command[0] in ['move', 'go', 'walk', 'travel','run']:
                 current_location, moved = move_player(command[1], current_location, locations, player.getInventory())
@@ -84,8 +83,9 @@ if __name__ == '__main__':
                     else:    
                         continue
 
-            # elif command in ['pick up', 'grab', 'equip'] :
-            #     pick_up_item()
+            elif command[0] in ['grab', 'take', 'equip'] :
+                pick_up_item(command[1], player.getInventory(), current_location)
+
             else:
                 print("Unknown command. Please try again.")
 

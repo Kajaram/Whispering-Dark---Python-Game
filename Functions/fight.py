@@ -27,7 +27,7 @@ def fightFunc(player, enemy, dialogue, items) :
             if not answer or weapon not in player.getInventory():
                player.setHealth(-enemy.getStrength())
                os.system('cls')
-               print(playerDialogue[random.randint(0,len(playerDialogue)-1)])
+               print(playerDialogue[random.randint(0,len(playerDialogue)-1)], f"said {player.getCustomName()}\n")
                print(f"{enemy.getName()} attacks! You lose {enemy.getStrength()} health!")
                continue
 
@@ -36,8 +36,8 @@ def fightFunc(player, enemy, dialogue, items) :
                 if weapon in player.getInventory():
                     enemy.setHealth(items[weapon]['damage'])
                     os.system('cls')
-                    print(enemyDialogue[random.randint(0,len(enemyDialogue)-1)])
-                    print(f"You damaged the {enemy.getName()}!")
+                    print(enemyDialogue[random.randint(0,len(enemyDialogue)-1)], f"said the {enemy.getCustomName()}\n")
+                    print(f"You damaged the {enemy.getName()}!" )
                     continue
 
           

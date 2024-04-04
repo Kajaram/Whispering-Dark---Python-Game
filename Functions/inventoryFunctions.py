@@ -1,4 +1,5 @@
 from Functions.locationFunctions import get_location
+import time
 
 def use_item(item_name, current_location, player_inventory):
     if item_name in player_inventory:
@@ -15,7 +16,7 @@ def use_item(item_name, current_location, player_inventory):
 
 # Example of picking up an item
 def pick_up_item(item_name, player_inventory, current_location):
-    current_location_items = get_location(current_location).items
+    current_location_items = current_location['items']
     if item_name in current_location_items:
         player_inventory.append(item_name)
         current_location_items.remove(item_name)
@@ -23,6 +24,8 @@ def pick_up_item(item_name, player_inventory, current_location):
     
     elif item_name in player_inventory:
         print(item_name + "is already in your inventory.")
+        time.sleep(2)
 
     else:
         print("That item isn't here.")
+        time.sleep(3)

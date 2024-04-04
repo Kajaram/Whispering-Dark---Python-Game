@@ -25,7 +25,12 @@ class Character:
             self._inventory.remove(item)
         else:
             print("Item not found in inventory!")
-    
+
+    def showInventory(self):
+        print(f"Items in {self.customName}'s inventory")
+        for item in self._inventory:
+            print(item)
+
     def getName(self):
         return self.playerName
     
