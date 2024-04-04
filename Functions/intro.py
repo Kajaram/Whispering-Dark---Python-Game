@@ -4,7 +4,7 @@ def read_intro_cutscene(file_path, sequence):
     with open(file_path, 'r') as file:
         game_data = json.load(file)
         for event in game_data['events']:
-            if event['id'] == 'intro_cutscene':
+            if event['id'] == sequence:
                 return event['sentences']
         return []
 

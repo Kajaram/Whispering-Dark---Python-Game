@@ -26,7 +26,14 @@ def describe_location(location):
 
 
 def check_event_happened(event_id, game_data):
-    for event in game_data["events"]:
+    for event in game_data:
         if event["id"] == event_id:
             return event["happened"]
     return None
+
+def set_event_happened(event_id, game_data):
+    for event in game_data:
+        if event["id"] == event_id:
+            event["happened"] = True
+    return None
+    

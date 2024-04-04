@@ -8,7 +8,7 @@
         "room-text": ["\nYou enter the cabin. In the middle of the room there is a large table cluttered with camp related items.",
          "You enter the cabin.", "You picked up the map from the table. You are now able to access all locations."],
 
-        "items": ["bandage", "map","repair kit"],
+        "items": ["bandage", "map","repair kit","Walkie Talkie"],
         "exits": {"east" : "barn", "north":"church_entrance","west":"trail"}
       },
       {
@@ -45,8 +45,8 @@
         "id": "church_entrance",
         "name": "The Church",
         "description": "The foreboding entrance to the Cult's church, shrouded in darkness.",
-        "room-text":["You enter the front of the church. All of the windows are boarded, blocking any light from entering.\nYou can tell the room is large by the echo of your foot steps.", 
-        "There is a large door to your left and a latch on the floor", "The latch is locked.", "The latch opens! You find stairs heading into the church's basement."],
+        "room-text":["You enter the front of the church. All of the windows are boarded, blocking any light from entering.\nYou can tell the room is large by the echo of your foot steps. \n\nThere is a large door to your left and a latch on the floor.\nThe latch is locked.", 
+        "The latch opens! You find stairs heading into the church's basement."],
         "requirements": ["flashlight"],
         "items" : [],
         "exits": {"north" : "church_basement","south" :"cabin", "west" : "church_library"}
@@ -140,6 +140,12 @@
         "name": "Necklace",
         "description": "A charm said to ward off dark forces and provide protection against supernatural harm..",
         "location": "church_basement"
+      },
+      "Walkie Talkie" : {
+        "id": "Walkie Talkie",
+        "name": "WalkieTalkie",
+        "description": "A device thats able to talk to people with the same device on a certain frequency",
+        "location": "cabin"
       }
     },
     
@@ -197,7 +203,8 @@
         "sentences": ["\nHaving recently arrived to the campsite where Nate and his friends would be spending their summer as camp counselors,\nthey were determined to make this their best summer yet.",
                      "To kick off ther first night's bonfire, the group decided to quietly slip away for a drink.",
                      "Returning to the firepit, a horrific scene awaited them.\nThe once cheery campsite was now covered with the remains of their peers.",
-                     "Petrified, Nate and his friends made the quick decision to retreat to a nearby cabin for safety."]
+                     "Petrified, Nate and his friends made the quick decision to retreat to a nearby cabin for safety."],
+                     "happened": false
       },
 
 

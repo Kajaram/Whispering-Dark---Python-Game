@@ -1,7 +1,7 @@
 from Functions.locationFunctions import get_location, describe_location
 from Functions.movement import move_player
 from Functions.inventoryFunctions import pick_up_item, use_item
-from Functions.engine import load_game_data,check_event_happened
+from Functions.engine import load_game_data,check_event_happened, set_event_happened
 from Functions.intro import sequence
 from Functions.quickTime import timer
 from Objects.Character import Character
@@ -13,7 +13,7 @@ import time
 
 player = Character(100, 'player')
 wendigo = Character(200, 'wendigo', 40)
-cultist = Character(40, 'cultist', 30)
+cultist = Character(30, 'cultist', 30)
 
 evelyn = Character(50)
 sophia = Character(100)
@@ -22,6 +22,7 @@ ava = Character(100)
 daniel = Character(100)
 
 locations = load_game_data('assets/Whispering-Dark Updated.json', 'locations') 
+events = load_game_data('assets/Whispering-Dark Updated.json', 'events') 
 dialogue = load_game_data('assets/Whispering-Dark Updated.json', 'dialogue') 
 items = load_game_data('assets/Whispering-Dark Updated.json', 'items') 
 current_location = get_location('cabin', locations) 
@@ -43,6 +44,7 @@ if __name__ == '__main__':
     while True:
 
         os.system('cls')
+
         describe_location(current_location)
         # print(current_location['items'])
         command = input("\nWhat do you want to do?\n").strip().lower()
@@ -51,7 +53,7 @@ if __name__ == '__main__':
         
         if len(command) > 0:
             if command[0] == 'quit':
-                print(f"Thanks for playing  {player.getCustomName()}. Goodbye!")
+                print(f"Thanks for playing {player.getCustomName()}. Goodbye!")
                 time.sleep(3)
                 # os.system('cls')
                 break
@@ -64,8 +66,7 @@ if __name__ == '__main__':
                 current_location, moved = move_player(command[1], current_location, locations, player.getInventory())
                 
                 if not moved:
-                    print("You can't move in that direction..")
-                    time.sleep(2)
+                    time.sleep(3)
                 else:
 
                     if current_location['id'] == 'trail' and not wendigo.checkIsDead():
@@ -73,8 +74,11 @@ if __name__ == '__main__':
                         print("\nThe wendigo emerges from the tree, claws bared. It pounces towards you!")
                         fightFunc(player, wendigo, dialogue, items)
                         
-                    elif current_location['id'] == 'church_entrance' and not check_event_happened("church_discovery", locations):
-                        sequence('church_discovery')   
+                    elif current_location['id'] == 'church_entrance':
+
+                        if not check_event_happened("church_discovery", events):
+                            sequence('church_discovery')   
+                            set_event_happened("church_discovery", events)
 
                     elif current_location['id'] == 'church_basement' and not cultist.checkIsDead():
                         fightFunc(player, cultist, dialogue, items)
