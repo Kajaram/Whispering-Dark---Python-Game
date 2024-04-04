@@ -1,8 +1,8 @@
 from Functions.locationFunctions import get_location, describe_location
 from Functions.movement import move_player
 from Functions.inventoryFunctions import pick_up_item, use_item
-from Functions.engine import load_game_data
-from Functions.intro import introSequence
+from Functions.engine import load_game_data,check_event_happened
+from Functions.intro import sequence
 from Functions.quickTime import timer
 from Objects.Character import Character
 from Functions.fight import fightFunc
@@ -31,11 +31,11 @@ if __name__ == '__main__':
 
     
     myName = input('\nEnter your Name:')
-    print(myName)
+    print("Welcome,", myName)
     player.setCustomName(myName)
 
     # menu()
-    # introSequence()
+    sequence('intro_cutscene')
  
     
     print("\nWelcome to Whispering Dark. Type 'quit' to exit at any time.")
@@ -44,7 +44,7 @@ if __name__ == '__main__':
 
         os.system('cls')
         describe_location(current_location)
-        print(current_location['items'])
+        # print(current_location['items'])
         command = input("\nWhat do you want to do?\n").strip().lower()
         command = command.split()
         
@@ -68,20 +68,25 @@ if __name__ == '__main__':
                     time.sleep(2)
                 else:
 
-                    # os.system('cls')
-                    describe_location(current_location)
-                    # print(current_location['id'], "YAAAA")
+                    if current_location['id'] == 'trail' and not wendigo.checkIsDead():
 
-                    if current_location['id'] == 'trail':
                         print("\nThe wendigo emerges from the tree, claws bared. It pounces towards you!")
                         fightFunc(player, wendigo, dialogue, items)
                         
-                        if player.checkIsDead() :
-                            print(f"Thanks for playing {player.getCustomName()}. Goodbye!")
-                            break
-                        
+                    elif current_location['id'] == 'church_entrance' and not check_event_happened("church_discovery", locations):
+                        sequence('church_discovery')   
+
+                    elif current_location['id'] == 'church_basement' and not cultist.checkIsDead():
+                        fightFunc(player, cultist, dialogue, items)
+                    
+
                     else:    
                         continue
+
+                if player.checkIsDead() :
+                        print(f"Thanks for playing {player.getCustomName()}. Goodbye!")
+                        break
+        
 
             elif command[0] in ['grab', 'take', 'equip'] :
                 pick_up_item(command[1], player.getInventory(), current_location)
