@@ -2,10 +2,10 @@ import json
 import Functions.inventoryFunctions as inventoryFunctions
 
 # Load game data from JSON
-def load_game_data(filename):
+def load_game_data(filename, param):
     with open(filename, 'r') as file:
         game_data = json.load(file)
-    return game_data['locations']
+    return game_data[param]
 
 # Find a location by ID
 def get_location(location_id, locations):

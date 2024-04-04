@@ -186,10 +186,6 @@
       }
     },
     
-    
-    
-    
-    
     "events": [
       {
         "id": "intro_cutscene",
@@ -222,5 +218,46 @@
         "outcome": "game_completion"
       }
     ]
+    ,
+    "dialogue" : {
+        
+      "wendigo" : {
+        "fightText" : ["RAHHHH", "REEEE", "SCREEECH", "VICTORRY SCREECH"] 
+      },
+    
+      "Evelyn" : {
+        "hints" : { 
+          "church_basement" : "..."
+        }
+      },
+
+      "player" : {
+        "cabin" : ["We can't just sit around waiting for help. We have to do something"],
+        "fightText" : ["Ouch!", "Curse you!", "Die beast!", "LETS GOOO"]
+      },
+
+      "Sophia" : {
+        "cabin" : ["OMG what was that, why are all the kids dead"],
+        "fight text" : ["OMG WE ARE GONNA DIEE!!!!"]
+      
+      },
+
+      "Rohan" : {
+        "cabin" : ["Man, this is messed up. What do you think happened here?"]
+      
+      },
+
+      "Ava" : {
+        "cabin" : ["I never signed up for this when I took the job as a camp counselor"]
+      
+      },
+
+      "Daniel Martinez" : {
+        "cabin" : ["EVERYONE CALM DOWN"]
+      
+      }
+    
   }
+    
+}
   

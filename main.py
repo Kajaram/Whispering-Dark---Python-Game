@@ -10,24 +10,39 @@ import os
 import time
 import sys
 
-player = Character("Player", 100)
-wendigo = Character("Wendigo", 200)
-cultist = Character("Cultist", 50)
+player = Character(100, 'player')
+wendigo = Character(200, 'wendigo', 40)
+cultist = Character(40, 'cultist', 30)
+
+evelyn = Character(50)
+sophia = Character(100)
+rohan = Character(100)
+ava = Character(100)
+daniel = Character(100)
+
+
+
 
 sys.path.append('c:\python312\lib\site-packages')
 
-locations = load_game_data('assets/Whispering-Dark Updated.json')  # Adjust the path as necessary
-current_location = get_location('cabin', locations)  # Starting location
 
 
 # Main game loop
 if __name__ == '__main__':
-    
-    # menu()
-    introSequence()
 
-    locations = load_game_data('assets/Whispering-Dark Updated.json')  # Adjust the path as necessary
-    current_location = get_location('cabin', locations)  # Starting location
+    
+    myName = input('\nEnter your Name:')
+    print(myName)
+    player.setCustomName(myName)
+
+    locations = load_game_data('assets/Whispering-Dark Updated.json', 'locations') 
+    dialogue = load_game_data('assets/Whispering-Dark Updated.json', 'dialogue') 
+    items = load_game_data('assets/Whispering-Dark Updated.json', 'items') 
+    current_location = get_location('cabin', locations) 
+
+    # menu()
+    # introSequence()
+ 
     
     print("\nWelcome to Whispering Dark. Type 'quit' to exit at any time.")
 
@@ -43,7 +58,7 @@ if __name__ == '__main__':
             if command[0] == 'quit':
                 print("Thanks for playing. Goodbye!")
                 time.sleep(3)
-                os.system('cls')
+                # os.system('cls')
                 break
 
             elif command[0] in ['move', 'go', 'walk', 'travel','run']:
@@ -54,12 +69,17 @@ if __name__ == '__main__':
                     time.sleep(2)
                 else:
 
-                    os.system('cls')
+                    # os.system('cls')
                     describe_location(current_location)
+                    # print(current_location['id'], "YAAAA")
 
                     if current_location['id'] == 'trail':
-                        fightFunc(player, wendigo, current_location, locations)
+                        print("\nThe wendigo emerges from the tree, claws bared. It pounces towards you!")
+                        fightFunc(player, wendigo, dialogue, items)
                         
+                        if player.checkIsDead() :
+                            print(f"Thanks for playing {player.getCustomName()}. Goodbye!")
+                            break
                         
                     else:    
                         continue
