@@ -42,16 +42,22 @@ if __name__ == '__main__':
     loaded = mainMenu(player, locations, wendigo, cultist, events, current_location)
 
     if not loaded:
-        myName = input('\nEnter your Name:')
+        myName = input('\nEnter your Name:\n\n')
         print("\nWelcome,", myName)
+        input("\nPress enter...\n")
         player.setCustomName(myName)
+        os.system('cls' if os.name == 'nt' else 'clear')
         sequence('intro_cutscene', events, player, cultist, dialogue, items)
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("\nWelcome to Whispering Dark. \nType 'quit' to exit at any time and 'pause' for the menu.")
         input("\n\nPress enter to continue...")
 
     else:
         loaded_state = load_game()
         player.from_dict(loaded_state["player"])
+        wendigo.from_dict(loaded_state["wendigo"])
+        cultist.from_dict(loaded_state["cultist"])
+        events = loaded_state["events"]
         current_location = get_location(loaded_state["current_location_id"], locations)
         
     os.system('cls' if os.name == 'nt' else 'clear')
