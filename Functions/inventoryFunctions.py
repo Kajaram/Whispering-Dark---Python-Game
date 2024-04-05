@@ -43,6 +43,7 @@ def pick_up_item(item_name, player_inventory, current_location,player):
         player_inventory.append(item_name)
         current_location_items.remove(item_name)
         print(f"Picked up {item_name}.")
+
         if item_name == 'talisman':
             os.system('cls')
             print("The talisman grants you additional health.\nYou will now have twice as many health points as you currently have.")

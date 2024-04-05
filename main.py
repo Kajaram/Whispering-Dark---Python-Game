@@ -98,6 +98,12 @@ if __name__ == '__main__':
                 player.showInventory()
                 input("\nPress enter to continue...")
 
+            elif command[0] in ['n', 'e', 'w', 's']: # Move player to a new location
+                current_location, moved = move_player(command[0], current_location, locations, player.getInventory())
+
+                if not moved:
+                    input("\nPress enter to continue...")
+
             elif command[0] in ['move', 'go', 'walk', 'travel','run']: # Move player to a new location
                 current_location, moved = move_player(command[1], current_location, locations, player.getInventory())
                 
