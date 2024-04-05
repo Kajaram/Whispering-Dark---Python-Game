@@ -1,6 +1,7 @@
 import json
 import os  # Make sure to import the os module for file operations
 
+
 def save_game(game_state, filename='savegame.json'):
     """Save the current state of the game to a file."""
     try:

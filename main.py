@@ -7,7 +7,7 @@ from Functions.quickTime import timer
 from Objects.Character import Character
 from Functions.fight import fightFunc
 from Functions.open import openItem
-from save_system import save_game, load_game
+from Functions.save_system import save_game, load_game
 import os
 import time
 # import sys
@@ -49,7 +49,7 @@ if __name__ == '__main__':
 
     while True:
 
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
 
         describe_location(current_location)
         # print(current_location['items'])
@@ -76,7 +76,7 @@ if __name__ == '__main__':
                     input("\nPress enter to continue...")
                 else:
 
-                    if current_location['id'] == 'trail' and not wendigo.checkIsDead():
+                    if current_location['id'] == 'trail' and not wendigo.checkIsDead() and 'axe' in player.getInventory():
                         
                         sequence('wendigo_confrontation', events, player, wendigo, dialogue, items)
                       
@@ -92,6 +92,10 @@ if __name__ == '__main__':
 
                         sequence('basement_confrontation', events, player, cultist, dialogue, items)
                         
+                    elif current_location['id'] == 'radio_tower':
+
+                        sequence('radio_tower', events, player, player, dialogue, items)
+                        
 
                     else:    
                         continue
@@ -102,13 +106,13 @@ if __name__ == '__main__':
         
 
             elif command[0] in ['grab', 'take', 'equip'] :
-                pick_up_item(command[1], player.getInventory(), current_location)
+                pick_up_item(command[1], player.getInventory(), current_location, player)
 
             elif command[0] in ['open', 'unlock', 'read']:
-                openItem(current_location, player.getInventory(), command[1])
+                openItem(current_location, player.getInventory(), command[1], player)
 
             elif command[0] in ['use']:
-                use_item(command[1], current_location ,player.getInventory(), player)
+                use_item(command[1], current_location ,player.getInventory(), player, events)
 
             else:
                 print("\nUnknown command. Please try again.")

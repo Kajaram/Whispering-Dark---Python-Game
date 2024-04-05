@@ -14,6 +14,10 @@ def move_player(command, current_location, locations, inventory):
         elif new_location_id == "church_entrance" and "flashlight" not in inventory:
             print("The path is too dark and treachurous to pass.\nWe need something to light the way..")
             return current_location, False
+        
+        elif new_location_id == 'trail' and 'axe' not in inventory:
+            print("Whatever took the lives of the other campers was last seen that way...\nI should probably gather more supplies before heading that way.")
+            return current_location, False
 
         elif command in current_location.get('exits', {}):
             return get_location(new_location_id, locations), True

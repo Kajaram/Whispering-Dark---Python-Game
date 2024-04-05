@@ -2,7 +2,7 @@ import time
 from Objects.Character import Character
 from Functions.inventoryFunctions import pick_up_item
 
-def openItem(current_location, playerInventory, noun) :
+def openItem(current_location, playerInventory, noun, player) :
 
     locationId = current_location['id']
 
@@ -22,7 +22,7 @@ def openItem(current_location, playerInventory, noun) :
 
         if answer in current_location['puzzle']['solution']:
             print("\nIt worked! You found a key!")
-            pick_up_item('basement_key', playerInventory, current_location)
+            pick_up_item('basement_key', playerInventory, current_location, player)
     
     elif locationId == 'church_entrance':
 

@@ -16,7 +16,7 @@
         "name": "The Trail",
         "items" : [],
         "description": "its a trail towards  the radio tower.",
-        "room-text":[],
+        "room-text":["To the west you can see the radio tower.."],
         "exits": {"east" : "cabin" , "west" : "radio_tower"}
       },
       {
