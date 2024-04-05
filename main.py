@@ -8,10 +8,17 @@ from Objects.Character import Character
 from Functions.fight import fightFunc
 from Functions.open import openItem
 from Functions.save_system import save_game, load_game
+from Functions.mainMenu import mainMenu
 import os
 import time
 # import sys
 # sys.path.append('c:\python312\lib\site-packages')
+
+locations = load_game_data('assets/Whispering-Dark Updated.json', 'locations') 
+events = load_game_data('assets/Whispering-Dark Updated.json', 'events') 
+dialogue = load_game_data('assets/Whispering-Dark Updated.json', 'dialogue') 
+items = load_game_data('assets/Whispering-Dark Updated.json', 'items') 
+current_location = get_location('cabin', locations) 
 
 player = Character(100, 'player')
 wendigo = Character(200, 'wendigo', 40)
@@ -27,25 +34,28 @@ rohan = Character(100)
 ava = Character(100)
 daniel = Character(100)
 
-locations = load_game_data('assets/Whispering-Dark Updated.json', 'locations') 
-events = load_game_data('assets/Whispering-Dark Updated.json', 'events') 
-dialogue = load_game_data('assets/Whispering-Dark Updated.json', 'dialogue') 
-items = load_game_data('assets/Whispering-Dark Updated.json', 'items') 
-current_location = get_location('cabin', locations) 
 
 # Main game loop
 if __name__ == '__main__':
 
 
-    myName = input('\nEnter your Name:')
-    print("\nWelcome,", myName)
-    player.setCustomName(myName)
+    loaded = mainMenu(player, locations, wendigo, cultist, events, current_location)
 
-    # menu()
-    sequence('intro_cutscene', events, player, cultist, dialogue, items)
- 
-    
-    print("\nWelcome to Whispering Dark. Type 'quit' to exit at any time.")
+    if not loaded:
+        myName = input('\nEnter your Name:')
+        print("\nWelcome,", myName)
+        player.setCustomName(myName)
+        sequence('intro_cutscene', events, player, cultist, dialogue, items)
+        print("\nWelcome to Whispering Dark. \nType 'quit' to exit at any time and 'pause' for the menu.")
+        input("\n\nPress enter to continue...")
+
+    else:
+        loaded_state = load_game()
+        player.from_dict(loaded_state["player"])
+        current_location = get_location(loaded_state["current_location_id"], locations)
+        
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 
     while True:
 
@@ -63,6 +73,9 @@ if __name__ == '__main__':
                 time.sleep(3)
                 # os.system('cls')
                 break
+
+            elif command[0] == 'pause':
+                 mainMenu(player, locations, wendigo, cultist, events, current_location)
 
             
             elif command[0] == 'inventory':

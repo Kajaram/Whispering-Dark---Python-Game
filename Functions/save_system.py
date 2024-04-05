@@ -1,7 +1,6 @@
 import json
 import os  # Make sure to import the os module for file operations
 
-
 def save_game(game_state, filename='savegame.json'):
     """Save the current state of the game to a file."""
     try:
@@ -26,15 +25,12 @@ def load_game(filename='savegame.json'):
         print("Save file is corrupted.")
         return None
 
-def delete_save(filename='savegame.json'):
-    """Delete the save game file if it exists."""
+def delete_save():
     try:
-        os.remove(filename)
-        print("Save file successfully deleted.")  # Inform the user of successful deletion
+        os.remove('savegame.json')
         return True
     except FileNotFoundError:
-        print("No save file found to delete.")
         return False
-    except OSError as e:  # Catching any OS error that might occur
-        print(f"Error deleting save file: {e}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
         return False

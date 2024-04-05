@@ -27,18 +27,9 @@ dialogue = load_game_data('assets/Whispering-Dark Updated.json', 'dialogue')
 items = load_game_data('assets/Whispering-Dark Updated.json', 'items')
 current_location = get_location('cabin', locations)
 
-def delete_save():
-    try:
-        os.remove('game_save.json')
-        return True
-    except FileNotFoundError:
-        return False
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return False
-
 # Main game loop
 if __name__ == '__main__':
+    
     os.system('cls' if os.name == 'nt' else 'clear')
     myName = input('\nEnter your Name: ')
     print("\nWelcome,", myName)
@@ -84,10 +75,14 @@ if __name__ == '__main__':
 
             elif command[0] == 'save':
                 game_state = {
-                    "player": player.to_dict(),
-                    "current_location_id": current_location['id'],
-                    # Consider adding more states as needed
-                }
+    "player": player.to_dict(),
+    "wendigo": wendigo.to_dict(),
+    "cultist": cultist.to_dict(),
+    "events": events,  
+    "locations": locations,
+    "current_location_id": current_location['id'],
+}
+
                 if save_game(game_state, 'game_save.json'):
                     print("Game saved successfully.")
                 else:
