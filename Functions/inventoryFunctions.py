@@ -4,6 +4,14 @@ from Functions.intro import sequence
 import time
 import os
 
+
+def drop_item(item_name, current_location, player):
+    current_location['items'].append(item_name)
+    player.removeFromInventory(item_name)
+    print(f"Item Dropped")
+    input("\nPress enter...")
+
+
 def use_item(item_name, current_location, player_inventory, player,events=''):
     if item_name in player_inventory:
             # Trigger event outcome here

@@ -2,7 +2,7 @@ import os
 from Functions.save_system import delete_save, save_game, load_game
 from Functions.engine import get_location
 
-def mainMenu(player, locations, wendigo, cultist, events, current_location, loaded=False) :
+def mainMenu(player, locations, wendigo, cultist, events, current_location, loaded=False, started=False) :
     #current game state
     game_state = {
 
@@ -19,7 +19,7 @@ def mainMenu(player, locations, wendigo, cultist, events, current_location, load
         #clear the console and prompt user for 
         os.system('cls' if os.name == 'nt' else 'clear')
         print(f"\n            WHISPERING DARK\n\n                 MENU.")
-        print("\n      For a new game, type 'new'." if not loaded else "")
+        print("\n      For a new game, type 'new'." if not loaded and not started else "")
         print("\n   To save your game, type 'save'.\n\n To load your previous game, type 'load'.\n\n To delete your save data, type 'delete'.\n\n       To resume, type 'resume'\n")
         action = input("\n").strip().lower()
         

@@ -1,6 +1,6 @@
 from Functions.locationFunctions import get_location, describe_location
 from Functions.movement import move_player
-from Functions.inventoryFunctions import pick_up_item, use_item
+from Functions.inventoryFunctions import pick_up_item, use_item, drop_item
 from Functions.engine import load_game_data,check_event_happened, set_event_happened
 from Functions.intro import sequence
 from Functions.quickTime import timer
@@ -69,10 +69,10 @@ if __name__ == '__main__':
         current_location = get_location(loaded_state["current_location_id"], locations)
         
     os.system('cls' if os.name == 'nt' else 'clear')
-
+    started = True
 
     while True:
-
+       
         os.system('cls' if os.name == 'nt' else 'clear') # Clear screen
 
         describe_location(current_location) # Describe the current location
@@ -91,7 +91,7 @@ if __name__ == '__main__':
             #Read commands for movement, pause, item use, etc.
 
             elif command[0] in ['pause', 'menu','start','options']: # Open game menu
-                 mainMenu(player, locations, wendigo, cultist, events, current_location, loaded)
+                 mainMenu(player, locations, wendigo, cultist, events, current_location, loaded, started)
 
             
             elif command[0] == 'inventory': # Show player inventory
@@ -159,6 +159,9 @@ if __name__ == '__main__':
 
             elif command[0] in ['grab', 'take', 'equip'] :  # Player picks up an item
                 pick_up_item(command[1], player.getInventory(), current_location, player)
+
+            elif command[0] in ['drop'] :  # Player picks up an item
+                drop_item(command[1], current_location, player)
 
             elif command[0] in ['open', 'unlock', 'read']:  # Player opens or reads an item
                 openItem(current_location, player.getInventory(), command[1], player, events)
