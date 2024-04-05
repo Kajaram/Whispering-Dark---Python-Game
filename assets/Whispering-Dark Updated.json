@@ -45,8 +45,8 @@
         "id": "church_entrance",
         "name": "The Church",
         "description": "The foreboding entrance to the Cult's church, shrouded in darkness.",
-        "room-text":["You enter the front of the church. All of the windows are boarded, blocking any light from entering.\nYou can tell the room is large by the echo of your foot steps. \n\nThere is a large door to your left and a latch on the floor.\nThe latch is locked.", 
-        "The latch opens! You find stairs heading into the church's basement."],
+        "room-text":["\nYou enter the front of the church. All of the windows are boarded, blocking any light from entering.\nYou can tell the room is large by the echo of your foot steps. \n\nThere is a large door to the west and a latch on the floor to the north.\nThe latch is locked.", 
+        "\nThe latch opens! You find stairs heading into the church's basement."],
         "requirements": ["flashlight"],
         "items" : [],
         "exits": {"north" : "church_basement","south" :"cabin", "west" : "church_library"}
@@ -55,17 +55,19 @@
         "id": "church_library",
         "name": "Church Library",
         "description": "Contains ancient texts explaining the origin of the Wendigo and its weaknesses.",
-        "room-text":["The chamber is filled with bookshelves as far as the eye can see, \n each packed with books which appear to be even older than the church itself.  \n A book with a red spine catches your eye. \n across the room you see a large chest with a riddle inscribed above a one word combination lock",
+        "room-text":["The chamber is filled with bookshelves as far as the eye can see,\neach packed with books which appear to be even older than the church itself.\nA book with a red spine catches your eye.\nAcross the room you see a large chest with a riddle inscribed above a one word combination lock",
         "You skim through the old text until you come across a passage about an ancient beast.\n The passage reads: 'The Wendigo: a supernatural being belonging to the spiritual traditions of Algonquian-speaking First Nations in North America. \n Windigos are described as powerful monsters that have a desire to kill and eat their victims. \n In most legends, humans transform into windigos because of their greed or weakness.'", "You approach the chest. It requires an 8 letter combination to open.",
         "The chest opens! Inside you find a key with letters from a strange langauge scratched into its side."],
-        "items": ["ancient text"],
+        "text" : "You skim through the old text until you come across a passage about an ancient beast.\nThe passage reads: 'The Wendigo: a supernatural being belonging to the spiritual traditions of Algonquian-speaking First Nations in North America.\nWindigos are described as powerful monsters that have a desire to kill and eat their victims.\nIn most legends, humans transform into windigos because of their greed or weakness.\nIt is rumored that only those who yield weapons coated in silver and a sacred talisman blessed by the pope can defeat this creature.'",
+        "items": ["ancient text", "basement_key"],
         "exits": {"east" : "church_entrance"},
         "puzzle": 
           {
             "description": "A chest with a letter combination lock, opened by solving a riddle.",
-            "riddle": "It can not be seen whenever it's there. \n It fills up a room, it's much like the air.\n It can not be touched, there's nothing to hear. \n It is quite harmless, there's nothing to fear." ,
+            "riddle": "\n\n   It can not be seen whenever it's there.\n   It fills up a room, it's much like the air.\n   It can not be touched, there's nothing to hear.\n   It is quite harmless, there's nothing to fear." ,
             "solution": ["darkness","Darkness"],
-            "reward": "basement_key"
+            "reward": "basement_key",
+            "opened" : false
           }
       },
       {
@@ -84,6 +86,12 @@
         "name": "Medical kit",
         "description": "Restores a significant amount of health.",
         "location": "cabin"
+      },
+      "latch" : {
+        "name": "latch",
+        "description": "Locks Basement",
+        "location": "church_entrance",
+        "locked" : true
       },
       
       "map" :  {
@@ -114,6 +122,7 @@
         "id": "ancient_text",
         "name": "book",
         "description": "ancient texts explaining the origin of the Wendigo",
+        "text" : "You skim through the old text until you come across a passage about an ancient beast.\nThe passage reads: 'The Wendigo: a supernatural being belonging to the spiritual traditions of Algonquian-speaking First Nations in North America.\nWindigos are described as powerful monsters that have a desire to kill and eat their victims.\nIn most legends, humans transform into windigos because of their greed or weakness.'",
         "location": "church_library"
       },
       "key" : {

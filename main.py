@@ -6,6 +6,8 @@ from Functions.intro import sequence
 from Functions.quickTime import timer
 from Objects.Character import Character
 from Functions.fight import fightFunc
+from Functions.open import openItem
+from save_system import save_game, load_game
 import os
 import time
 # import sys
@@ -14,6 +16,10 @@ import time
 player = Character(100, 'player')
 wendigo = Character(200, 'wendigo', 40)
 cultist = Character(30, 'cultist', 30)
+
+cultist.setCustomName = 'cultist'
+wendigo.setCustomName = 'wendigo'
+
 
 evelyn = Character(50)
 sophia = Character(100)
@@ -30,13 +36,13 @@ current_location = get_location('cabin', locations)
 # Main game loop
 if __name__ == '__main__':
 
-    
+
     myName = input('\nEnter your Name:')
     print("Welcome,", myName)
     player.setCustomName(myName)
 
     # menu()
-    sequence('intro_cutscene')
+    sequence('intro_cutscene', events, player, cultist, dialogue, items)
  
     
     print("\nWelcome to Whispering Dark. Type 'quit' to exit at any time.")
@@ -58,6 +64,7 @@ if __name__ == '__main__':
                 # os.system('cls')
                 break
 
+            
             elif command[0] == 'inventory':
                 player.showInventory()
                 time.sleep(3)
@@ -66,23 +73,25 @@ if __name__ == '__main__':
                 current_location, moved = move_player(command[1], current_location, locations, player.getInventory())
                 
                 if not moved:
-                    time.sleep(3)
+                    time.sleep(2)
                 else:
 
                     if current_location['id'] == 'trail' and not wendigo.checkIsDead():
-
-                        print("\nThe wendigo emerges from the tree, claws bared. It pounces towards you!")
-                        fightFunc(player, wendigo, dialogue, items)
                         
+                        sequence('wendigo_confrontation', events, player, wendigo, dialogue, items)
+                      
+                        
+
                     elif current_location['id'] == 'church_entrance':
 
-                        if not check_event_happened("church_discovery", events):
-                            sequence('church_discovery')   
-                            set_event_happened("church_discovery", events)
+                        sequence('church_discovery', events, player, cultist, dialogue, items)   
+
+
 
                     elif current_location['id'] == 'church_basement' and not cultist.checkIsDead():
-                        fightFunc(player, cultist, dialogue, items)
-                    
+
+                        sequence('basement_confrontation', events, player, cultist, dialogue, items)
+                        
 
                     else:    
                         continue
@@ -95,8 +104,13 @@ if __name__ == '__main__':
             elif command[0] in ['grab', 'take', 'equip'] :
                 pick_up_item(command[1], player.getInventory(), current_location)
 
+            elif command[0] in ['open', 'unlock', 'read']:
+                openItem(current_location, player.getInventory(), command[1])
+
             else:
                 print("Unknown command. Please try again.")
+                time.sleep(2)
 
         else:
             print("Please enter a command..")
+            time.sleep(2)
