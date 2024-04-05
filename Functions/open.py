@@ -1,33 +1,37 @@
 import time
-from Objects.Character import Character
-from Functions.inventoryFunctions import pick_up_item
+from Objects.Character import Character  # Import Character class for player object handling
+from Functions.inventoryFunctions import pick_up_item  # Function to add items to player's inventory
+from Functions.intro import sequence
 
-def openItem(current_location, playerInventory, noun, player) :
+def openItem(current_location, playerInventory, noun, player, events) :
 
-    locationId = current_location['id']
+    locationId = current_location['id'] # Get the current location ID
 
-    if noun == 'book' and locationId == 'church_library':
-        print(current_location['text'])
-        input("\n\nPress enter when done")
+    if noun == 'book' and locationId == 'church library':
+        # If the player tries to open a book in the church library
+        sequence('book', events) # Display text associated with the book
+        input("\n\nPress enter when done\n") # Pause for user to read the text
     
-    elif locationId == 'church_library' and current_location['puzzle']['opened']:
-        print("The chest is empty.")
-        time.sleep(2)
+    elif locationId == 'church library' and current_location['puzzle']['opened']:
+        # If the puzzle in the church library is already opened
+        print("The chest is empty.") # Inform the player that the chest is empt
+        time.sleep(2) # Brief pause for readability
 
-    elif locationId == 'church_library' and not current_location['puzzle']['opened']:
-
+    elif locationId == 'church library' and not current_location['puzzle']['opened']:
+    # If there's an unopened puzzle in the church library
         print(f"The chest is locked, but this is a riddle inscribed above. It reads:", current_location['puzzle']['riddle'])
-        current_location['puzzle']['opened'] = True
-        answer = input("\nWhat will you enter into the combination lock? Enter 'L' to leave.\n")
+        current_location['puzzle']['opened'] = True # Mark the puzzle as opened
+        answer = input("\nWhat will you enter into the combination lock? Enter 'L' to leave.\n")  # Prompt for puzzle solution
 
         if answer in current_location['puzzle']['solution']:
-            print("\nIt worked! You found a key!")
-            pick_up_item('basement_key', playerInventory, current_location, player)
+            print("\nIt worked! You found a key!") # Success message
+            pick_up_item('basement key', playerInventory, current_location, player) # Add basement key to player's inventory
     
-    elif locationId == 'church_entrance':
-
-        if 'basement_key' in playerInventory:
+    elif locationId == 'church entrance':
+        # If the player is trying to open something at the church entrance
+        if 'basement key' in playerInventory:
+            # If the player has the basement key
             print("\nThe latch opens! Stairs lead into the basement cellar to the north.. You hear something moving in the darkness")
-            time.sleep(3)
+            input("Press enter to continue...")
 
 

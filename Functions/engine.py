@@ -1,6 +1,7 @@
 import json 
 import Functions.inventoryFunctions as inventoryFunctions
-
+import os
+os.chdir(os.path.dirname(__file__))
 # Load game data from JSON
 def load_game_data(filename, param):
     with open(filename, 'r') as file:

@@ -32,7 +32,8 @@ def fightFunc(player, enemy, dialogue, items) :
                player.setHealth(-enemy.getStrength())
                os.system('cls')
                print(playerDialogue[random.randint(0,len(playerDialogue)-1)], f"said {player.getCustomName()}\n")
-               print(f"{enemy.getName()} attacks! You lose {enemy.getStrength()} health!")
+               print(f"\n{enemy.getName()} attacks! You lose {enemy.getStrength()} health!")
+               print(f"\n{player.getCustomName()} health: {player.getHealth()}")
                continue
 
             elif answer:
@@ -42,7 +43,7 @@ def fightFunc(player, enemy, dialogue, items) :
                     enemy.setHealth(-items[weapon]['damage'])
                     os.system('cls')
                     print(enemyDialogue[random.randint(0,len(enemyDialogue)-1)], f"said the {enemy.getCustomName()}\n")
-                    print(f"You damaged the {enemy.getName()}!" )
+                    print(f"You damaged the {enemy.getCustomName()}!" )
                     print(enemy.getName(), "health: ", enemy.getHealth())
                     time.sleep(2)
                     continue

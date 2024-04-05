@@ -1,25 +1,30 @@
 class Character:
     def __init__(self, health=100, name="", strength = 10, inventory=[]):
-        self.name = __name__
-        self.playerName = name
-        self._health = health
-        self._strength = strength
-        self._inventory = inventory if inventory is not None else []
-        self.isDead = False
-        self.customName = ''
+        self.name = __name__  # Character's identifier or role
+        self.playerName = name # Character's player or character name
+        self._health = health # Character's health
+        self._strength = strength # Character's strength
+        self._inventory = inventory if inventory is not None else [] # Character's inventory, ensuring it's a list if None is passed
+        self.isDead = False # Flag to check if the character is dead
+        self.customName = ''  # Custom name for the character
 
+    #returns the characters's current health
     def getHealth(self):
         return self._health 
-
+    
+    #Increases or decreases health (used during fight scenes)
     def setHealth(self, new_health): 
-        self._health += new_health
+        self._health += new_health 
 
+    #returns a list of items in the characters inventory
     def getInventory(self):
         return self._inventory
 
+    #Adds an item to the character's inventory.
     def addToInventory(self, item):
         self._inventory.append(item)
 
+    #Removes an item from the character's inventory if it exists
     def removeFromInventory(self, item):
         if item in self._inventory:
             self._inventory.remove(item)
