@@ -38,7 +38,7 @@ if __name__ == '__main__':
 
 
     myName = input('\nEnter your Name:')
-    print("Welcome,", myName)
+    print("\nWelcome,", myName)
     player.setCustomName(myName)
 
     # menu()
@@ -67,13 +67,13 @@ if __name__ == '__main__':
             
             elif command[0] == 'inventory':
                 player.showInventory()
-                time.sleep(3)
+                input("\nPress enter to continue...")
 
             elif command[0] in ['move', 'go', 'walk', 'travel','run']:
                 current_location, moved = move_player(command[1], current_location, locations, player.getInventory())
                 
                 if not moved:
-                    time.sleep(2)
+                    input("\nPress enter to continue...")
                 else:
 
                     if current_location['id'] == 'trail' and not wendigo.checkIsDead():
@@ -107,10 +107,13 @@ if __name__ == '__main__':
             elif command[0] in ['open', 'unlock', 'read']:
                 openItem(current_location, player.getInventory(), command[1])
 
+            elif command[0] in ['use']:
+                use_item(command[1], current_location ,player.getInventory(), player)
+
             else:
-                print("Unknown command. Please try again.")
+                print("\nUnknown command. Please try again.")
                 time.sleep(2)
 
         else:
-            print("Please enter a command..")
+            print("\nPlease enter a command..")
             time.sleep(2)

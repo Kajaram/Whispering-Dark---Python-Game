@@ -60,4 +60,26 @@ class Character:
 
     def getCustomName(self):
         return self.customName
+
+    # Method to serialize character state to a dictionary
+    def to_dict(self):
+        return {
+            "name": self.playerName,
+            "health": self._health,
+            "strength": self._strength,
+            "inventory": self._inventory,
+            "isDead": self.isDead,
+            "customName": self.customName
+        }
+
+    # Method to deserialize character state from a dictionary
+    def from_dict(self, data):
+        self.playerName = data.get("name", "")
+        self._health = data.get("health", 100)
+        self._strength = data.get("strength", 10)
+        self._inventory = data.get("inventory", [])
+        self.isDead = data.get("isDead", False)
+        self.customName = data.get("customName", "")
+
+
     
