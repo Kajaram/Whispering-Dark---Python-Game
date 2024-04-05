@@ -2,6 +2,7 @@ import time
 from Objects.Character import Character  # Import Character class for player object handling
 from Functions.inventoryFunctions import pick_up_item  # Function to add items to player's inventory
 from Functions.intro import sequence
+import os
 
 def openItem(current_location, playerInventory, noun, player, events) :
 
@@ -19,13 +20,24 @@ def openItem(current_location, playerInventory, noun, player, events) :
 
     elif locationId == 'church library' and not current_location['puzzle']['opened']:
     # If there's an unopened puzzle in the church library
-        print(f"The chest is locked, but this is a riddle inscribed above. It reads:", current_location['puzzle']['riddle'])
-        current_location['puzzle']['opened'] = True # Mark the puzzle as opened
-        answer = input("\nWhat will you enter into the combination lock? Enter 'L' to leave.\n")  # Prompt for puzzle solution
+        answer = ''
+        while answer != 'l':
 
-        if answer in current_location['puzzle']['solution']:
-            print("\nIt worked! You found a key!") # Success message
-            pick_up_item('basement key', playerInventory, current_location, player) # Add basement key to player's inventory
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print(f"The chest is locked, but this is a riddle inscribed above. It reads:", current_location['puzzle']['riddle'])
+            answer = input("\nWhat will you enter into the combination lock? Enter 'L' to leave.\n").lower()  # Prompt for puzzle solution
+
+            if answer in current_location['puzzle']['solution']:
+                print("\nIt worked! You found a key!") # Success message
+                pick_up_item('basement key', playerInventory, current_location, player) # Add basement key to player's inventory
+                current_location['puzzle']['opened'] = True # Mark the puzzle as opened
+                break
+
+            elif answer == 'l':
+                break
+            else:
+                input("Hmm, that didn't work..\n\nPress enter to try again.")
+
     
     elif locationId == 'church entrance':
         # If the player is trying to open something at the church entrance

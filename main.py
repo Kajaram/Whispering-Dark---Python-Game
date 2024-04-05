@@ -101,7 +101,6 @@ if __name__ == '__main__':
 
             elif command[0] in ['move', 'go', 'walk', 'travel','run', 'n', 'e', 'w', 's']: # Move player to a new location
                 
-                
 
                 if command[0] in ['n', 'e', 'w', 's']: # Move player to a new location
 
