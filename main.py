@@ -98,19 +98,34 @@ if __name__ == '__main__':
                 player.showInventory()
                 input("\nPress enter to continue...")
 
-            elif command[0] in ['n', 'e', 'w', 's']: # Move player to a new location
-                current_location, moved = move_player(command[0], current_location, locations, player.getInventory())
+
+            elif command[0] in ['move', 'go', 'walk', 'travel','run', 'n', 'e', 'w', 's']: # Move player to a new location
+                
+                
+
+                if command[0] in ['n', 'e', 'w', 's']: # Move player to a new location
+
+                    newcommand = command[0]
+
+                    if command[0] == 'n':
+                        newcommand = 'north'
+
+                    elif command[0] == 'e':
+                        newcommand = 'east'
+                    
+                    elif command[0] == 's':
+                        newcommand = 'south'
+                    
+                    elif command[0] == 'w':
+                        newcommand = 'west'
+                else:
+                    newcommand = command[1]
+                  
+                current_location, moved = move_player(newcommand, current_location, locations, player.getInventory())
 
                 if not moved:
                     input("\nPress enter to continue...")
 
-            elif command[0] in ['move', 'go', 'walk', 'travel','run']: # Move player to a new location
-                current_location, moved = move_player(command[1], current_location, locations, player.getInventory())
-                
-                if not moved:
-                    input("\nPress enter to continue...")
-
-                
                 #Check current location to initiate text and fight sequences
 
                 else:
@@ -128,7 +143,7 @@ if __name__ == '__main__':
                         
 
                     elif current_location['id'] == 'radio tower':
-
+                        os.system('cls' if os.name == 'nt' else 'clear') # Clear screen
                         describe_location(current_location)
                         input("Press enter to continue...")
                         sequence('radio_tower2', events)

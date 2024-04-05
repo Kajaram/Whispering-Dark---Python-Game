@@ -4,18 +4,6 @@ from Functions.locationFunctions import get_location # Import function to get de
 def move_player(command, current_location, locations, inventory):
 
 
-    if command == 'n':
-        command = 'north'
-
-    elif command == 'e':
-        command = 'east'
-    
-    elif command == 's':
-        command = 'south'
-    
-    elif command == 'w':
-        command = 'west'
-
 
     if command in current_location['exits']:
         # Check if the command corresponds to an available exit in the current location
