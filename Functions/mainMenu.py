@@ -1,6 +1,7 @@
 import os
 from Functions.save_system import delete_save, save_game, load_game
 from Functions.engine import get_location
+from Functions.centerprint import centered_print
 
 def mainMenu(player, locations, wendigo, cultist, events, current_location, loaded=False, started=False) :
     #current game state
@@ -18,9 +19,10 @@ def mainMenu(player, locations, wendigo, cultist, events, current_location, load
 
         #clear the console and prompt user for 
         os.system('cls' if os.name == 'nt' else 'clear')
-        print(f"\n            WHISPERING DARK\n\n                 MENU.")
-        print("\n      For a new game, type 'new'." if not loaded and not started else "")
-        print("\n   To save your game, type 'save'.\n\n To load your previous game, type 'load'.\n\n To delete your save data, type 'delete'.\n\n       To resume, type 'resume'\n")
+        title = ''
+        centered_print(f"\n            WHISPERING DARK\n\n                 MENU.")
+        centered_print("\n      For a new game, type 'new'." if not loaded and not started else "")
+        centered_print("\n   To save your game, type 'save'.\n\n To load your previous game, type 'load'.\n\n To delete your save data, type 'delete'.\n\n       To resume, type 'resume'\n")
         action = input("\n").strip().lower()
         
         if action == 'new':  # Indicate a new game should be started
@@ -38,7 +40,6 @@ def mainMenu(player, locations, wendigo, cultist, events, current_location, load
                 return True # Indicate game has been loaded
             
             else:
-                print("Failed to load game, starting a new game instead.")
                 input("\nPress enter to continue...")
                 return False # Failed to load, start a new game
 
@@ -49,7 +50,7 @@ def mainMenu(player, locations, wendigo, cultist, events, current_location, load
                 else:
                     print("\nFailed to save game.")
                     input("\nPress enter to continue...")
-
+                return False
 
         elif action == 'delete': # Delete save data
             delete_save()

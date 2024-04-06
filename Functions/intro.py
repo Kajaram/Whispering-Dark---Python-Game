@@ -2,6 +2,7 @@ import json
 from Functions.engine import set_event_happened, check_event_happened
 from Functions.fight import fightFunc
 from Objects import Character
+from Functions.centerprint import centered_print
 
 def read_intro_cutscene(file_path, sequence):
     with open(file_path, 'r') as file:
@@ -19,7 +20,7 @@ def sequence(sequenceName, events, player='', enemy='', dialogue='', items=''):
         print("\nPress Enter to display the next line of text")
         print("\nEnter 's' to skip")
         for sentence in intro_cutscene_sentences:
-            print(sentence)
+            centered_print(sentence)
             user_input = input()
             if user_input.lower() == 's':
                 break

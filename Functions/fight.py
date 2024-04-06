@@ -16,7 +16,7 @@ def fightFunc(player, enemy, dialogue, items) :
        
         while enemy.getHealth() > 0 and player.getHealth() > 0:
             
-            action, answer = timer(7, "\nthink fast!")
+            action, answer = timer(6, "\nthink fast!")
             # print(action, answer)
             action = str(action)
             action = action.split()

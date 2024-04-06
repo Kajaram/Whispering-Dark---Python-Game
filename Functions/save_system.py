@@ -19,8 +19,8 @@ def load_game(filename='savegame.json'):
             game_state = json.load(f)  # Deserialize JSON content to Python object
         return game_state  # Return the game state
     except FileNotFoundError:  # Catch if the file does not exist
-        print("No save file found. Starting a new game.") # Notify user, treat as new game
-        return None  # Return None to indicate no data
+        print("No save file found.") # Notify user, treat as new game
+        return False  # Return None to indicate no data
     except json.JSONDecodeError: # Catch JSON errors
         print("Save file is corrupted.")  # Notify user of corrupt save
         return None # Return None to indicate error

@@ -91,7 +91,14 @@ if __name__ == '__main__':
             #Read commands for movement, pause, item use, etc.
 
             elif command[0] in ['pause', 'menu','start','options']: # Open game menu
-                 mainMenu(player, locations, wendigo, cultist, events, current_location, loaded, started)
+                if mainMenu(player, locations, wendigo, cultist, events, current_location, loaded, started):
+                        loaded_state = load_game()
+                        player.from_dict(loaded_state["player"])
+                        wendigo.from_dict(loaded_state["wendigo"])
+                        cultist.from_dict(loaded_state["cultist"])
+                        events = loaded_state["events"]
+                        locations=loaded_state['locations']
+                        current_location = get_location(loaded_state["current_location_id"], locations)
 
             
             elif command[0] == 'inventory': # Show player inventory
