@@ -1,6 +1,5 @@
 import time
 from Objects.Character import Character  # Import Character class for player object handling
-from Functions.inventoryFunctions import pick_up_item  # Function to add items to player's inventory
 from Functions.intro import sequence
 import os
 
@@ -29,7 +28,7 @@ def openItem(current_location, playerInventory, noun, player, events) :
 
             if answer in current_location['puzzle']['solution']:
                 print("\nIt worked! You found a key!") # Success message
-                pick_up_item('basement key', playerInventory, current_location, player) # Add basement key to player's inventory
+                player.pick_up_item('basement key', current_location) # Add basement key to player's inventory
                 current_location['puzzle']['opened'] = True # Mark the puzzle as opened
                 break
 

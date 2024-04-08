@@ -1,4 +1,8 @@
 {
+  "world" : {
+
+    "current_location":"cabin",
+
     "locations": [
       {
         "id": "cabin",
@@ -17,6 +21,7 @@
         "items" : [],
         "description": "its a trail towards  the radio tower.",
         "room-text":["To the west you can see the radio tower.."],
+        "requirements": ["silver_axe"],
         "exits": {"east" : "cabin" , "west" : "radio tower"}
       },
       {
@@ -28,7 +33,7 @@
           "You set the channel to the emergency response channel.. \n  There's someone on the other side! \n 'Please help us!' you cry.",
           "After explaining what has happened, the operator on the other end confirms your situation \n and dispatches emergency services. 'We'll be there by morning. Hold tight' he says."],
         "items":["radio"],
-        "requirements": ["silver_axe"],
+        "requirements": [""],
         "exits": {"east" : "trail"}
       },
       {
@@ -37,6 +42,7 @@
         "description": "\nYou enter an old barn.\nThere are shelves with miscellaneous items on almost every wall.",
         "room-text":["You enter the barn, to your left you seen an old workbench with various tools. A flashlight sits on the top shelf.\nTo your right there is an old gun case with a rifle."],
         "items": ["rifle", "flashlight"],
+        "requirements": [""],
         "exits": {"west" : "cabin"}
       },
 
@@ -59,6 +65,7 @@
         "The chest opens! Inside you find a key with letters from a strange langauge scratched into its side."],
         "text" : "\nYou skim through the old text until you come across a passage about an ancient beast.\nThe passage reads: 'The Wendigo: a supernatural being belonging to the spiritual traditions of Algonquian-speaking First Nations in North America.\nWindigos are described as powerful monsters that have a desire to kill and eat their victims.\nIn most legends, humans transform into windigos because of their greed or weakness.\nIt is rumored that only those who yield weapons coated in silver and a sacred talisman blessed by the pope can defeat this creature.'",
         "items": ["ancient text", "basement key"],
+        "requirements": [""],
         "exits": {"east" : "church entrance"},
         "puzzle": 
           {
@@ -74,7 +81,7 @@
         "name": "Church Basement",
         "description": "A locked basement holding crucial items for your quest.",
         "room-text":["\n\nHung on the wall you see and axe whose blade is coated in silver.\nIt glistens in the light of your flashlight.\nOn its hilt you see words inscribed in the same language as earlier.\nThere is also a strange looking talisman sitting on a round table.\nSymbols similar to those on the axe are inscribed on the metal object."],
-        "requirements": ["basement_key"],
+        "requirements": ["basement key"],
         "items": ["axe","talisman"],
         "exits" : {"south" : "church entrance"}
       }
@@ -115,27 +122,31 @@
       "flashlight" : {
         "name": "light",
         "description": "A device to see in the dark",
-        "location": "barn"
+        "location": "barn",
+        "usage" : ["church entrance"]
       },
       "ancient text" : {
         "id": "ancient_text",
         "name": "book",
         "description": "ancient texts explaining the origin of the Wendigo",
         "text" : "",
-        "location": "church library"
+        "location": "church library",
+        "usage" : ["everywhere"]
       },
       "key" : {
         "id": "basement_key",
         "name": "Basement Key",
         "description": "The key to unlock the door to the basement.",
-        "location": "church library"
+        "location": "church library",
+        "usage" : ["everywhere"]
       },
       "axe" : {
         "id": "silver_axe",
         "damage" : 50,
         "name": "Silver axe",
         "description": "The only weapon capable of defeating the Wendigo, hidden in the church basement.",
-        "location": "church basement"
+        "location": "church basement",
+        "usage" : ["trail"]
       },
       "repair kit" : {
         "id": "Electronic_Repair_kit",
@@ -154,6 +165,12 @@
         "name": "Walkie",
         "description": "A device thats able to talk to people with the same device on a certain frequency",
         "location": "cabin"
+      },
+      "Scythe" : {
+        "id": "Scythe",
+        "name": "Scythe",
+        "description": "A cursed weapon yielded by cultists",
+        "location": ""
       }
     },
     
@@ -401,5 +418,6 @@
     
   }
     
+  }
 }
   

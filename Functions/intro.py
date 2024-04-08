@@ -1,13 +1,12 @@
 import json
 from Functions.engine import set_event_happened, check_event_happened
 from Functions.fight import fightFunc
-from Objects import Character
 from Functions.centerprint import centered_print
 
-def read_intro_cutscene(file_path, sequence):
+def cutscene(file_path, sequence):
     with open(file_path, 'r') as file:
         game_data = json.load(file)
-        for event in game_data['events']:
+        for event in game_data['world']['events']:
             if event['id'] == sequence:
                 return event['sentences']
         return []
@@ -16,7 +15,7 @@ def sequence(sequenceName, events, player='', enemy='', dialogue='', items=''):
 
 
     if sequenceName == 'book':
-        intro_cutscene_sentences = read_intro_cutscene('Whispering-Dark Updated.json', sequenceName) 
+        intro_cutscene_sentences = cutscene('Whispering-Dark Updated.json', sequenceName) 
         print("\nPress Enter to display the next line of text")
         print("\nEnter 's' to skip")
         for sentence in intro_cutscene_sentences:
@@ -28,7 +27,7 @@ def sequence(sequenceName, events, player='', enemy='', dialogue='', items=''):
         set_event_happened(sequenceName, events)
 
     elif not check_event_happened(sequenceName, events):
-        intro_cutscene_sentences = read_intro_cutscene('Whispering-Dark Updated.json', sequenceName) 
+        intro_cutscene_sentences = cutscene('Whispering-Dark Updated.json', sequenceName) 
         print("\nPress Enter to display the next line of text")
         print("\nEnter 's' to skip")
         for sentence in intro_cutscene_sentences:

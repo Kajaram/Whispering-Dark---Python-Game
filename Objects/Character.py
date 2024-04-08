@@ -1,10 +1,15 @@
+from Functions.locationFunctions import get_location
+from Functions.intro import sequence
+import time
+import os
+
 class Character:
-    def __init__(self, health=100, name="", strength = 10, inventory=[]):
+    def __init__(self):
         self.name = __name__  # Character's identifier or role
-        self.playerName = name # Character's player or character name
-        self._health = health # Character's health
-        self._strength = strength # Character's strength
-        self._inventory = inventory if inventory is not None else [] # Character's inventory, ensuring it's a list if None is passed
+        self.playerName = "" # Character's player or character name
+        self._health = 0 # Character's health
+        self._strength = 0 # Character's strength
+        self._inventory = [] # Character's inventory, ensuring it's a list if None is passed
         self.isDead = False # Flag to check if the character is dead
         self.customName = ''  # Custom name for the character
 
@@ -65,6 +70,9 @@ class Character:
 
     def getCustomName(self):
         return self.customName
+    
+    def setStrength(self, strength):
+        self.strength = strength
 
     # Method to serialize character state to a dictionary
     def to_dict(self):
@@ -86,5 +94,66 @@ class Character:
         self.isDead = data.get("isDead", False)
         self.customName = data.get("customName", "")
 
+    def drop_item(self, item_name, current_location):
+        current_location['items'].append(item_name)
+        self.removeFromInventory(item_name)
+        print(f"Item Dropped")
+        input("\nPress enter...")
 
-    
+
+    def use_item(self, item_name, current_location, events=''):
+
+        if item_name in self.getInventory():
+                # Trigger event outcome here
+            if item_name == 'flashlight' and current_location['id'] == 'church entrance':
+                print("The flashlight illuminates the inside of the church.\nExpansive murals line its walls, their glistening colours telling tales of both glory and woe.")
+                input("Press enter to continue...")
+                # Modify location exits or reveal items
+            elif item_name == 'walkie' and current_location['id'] == 'radio tower':
+                sequence('radio_tower', events)
+
+            elif item_name == 'bandages':
+                self.setHealth(15)
+                print(f"{self.getCustomName()} used a bandage! \nYour health increases by 15 points")
+                print(f"Player health: ", self.getHealth())
+                self.removeFromInventory('bandages')
+                input("\nPress enter to continue...")
+
+            elif item_name == 'map':
+                exits = current_location['exits']
+                for key, val in exits.items():
+                    print(f"\n{key} --> {val}")
+        
+                input("\nPress enter to continue...")
+            
+            else:
+                print(f"\nYou use the {item_name}, but nothing happens.")
+                input("\nPress enter to continue...")
+        else:
+            print("\nYou don't have that item.")
+            input("\nPress enter to continue...")
+
+    # Example of picking up an item
+    def pick_up_item(self, item_name,current_location):
+        
+        current_location_items = current_location['items']
+        if item_name in current_location_items:
+            self._inventory.append(item_name)
+            current_location_items.remove(item_name)
+            print(f"Picked up {item_name}.")
+
+            if item_name == 'talisman':
+                os.system('cls')
+                print("The talisman grants you additional health.\nYou will now have twice as many health points as you currently have.")
+                self.setHealth(2*self.getHealth())
+                print(f"Player health: {self.getHealth()}")
+            input("\nPress enter to continue...")
+        
+        elif item_name in self._inventory:
+            print(item_name + " is already in your inventory.")
+            input("\nPress enter to continue...")
+
+        else:
+            print("That item isn't here.")
+            input("\nPress enter to continue...")
+        

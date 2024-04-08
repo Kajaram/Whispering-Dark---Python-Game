@@ -1,13 +1,24 @@
 import json 
-import Functions.inventoryFunctions as inventoryFunctions
 import os
+
 os.chdir(os.path.dirname(__file__))
 # Load game data from JSON
 def load_game_data(filename, param):
     with open(filename, 'r') as file:
         game_data = json.load(file)
-    return game_data[param]
+    return game_data['world'][param]
 
+
+def load_world(filename, param):
+    with open(filename, 'r') as file:
+        game_data = json.load(file)
+        return game_data[param]
+    
+def load_world2(filename):
+    with open(filename, 'r') as file:
+        game_data = json.load(file)
+        return game_data
+    
 # Find a location by ID
 def get_location(location_id, locations):
     for location in locations:
@@ -19,11 +30,6 @@ def get_location(location_id, locations):
 def describe_location(location):
     print("\n Current location: " + location['name'])
     print(location['description'])
-
-    # for direction, destination_id in location.get('exits', {}).items():
-    #     destination = get_location(destination_id, locations)
-    #     if destination:
-    #         print(f"To the {direction} is {destination['name']}.")
 
 
 def check_event_happened(event_id, game_data):

@@ -7,7 +7,7 @@ def fightFunc(player, enemy, dialogue, items) :
         
         turn = []
         
-        playerDialogue = dialogue[player.getName()]['fightText']
+        playerDialogue = dialogue['player']['fightText']
         enemyDialogue = dialogue[enemy.getName()]['fightText']
 
         if enemy.checkIsDead():
