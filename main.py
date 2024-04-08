@@ -29,8 +29,6 @@ factory = characterFactory()
 
 cultist = factory.makeCharacter('cultist')
 wendigo = factory.makeCharacter('wendigo')
-print(wendigo)
-print(cultist)
 
 
 flag = False
@@ -40,11 +38,6 @@ loaded = False
 # Main game loop
 if __name__ == '__main__':
 
-    print(wendigo.getCustomName())
-    print(cultist.getCustomName())
-    print(wendigo.getName())
-    print(cultist.getName())
-    input("press enter")
     while True:
 
         if flag: break
@@ -61,7 +54,9 @@ if __name__ == '__main__':
             os.system('cls' if os.name == 'nt' else 'clear') # Clear screen
             sequence('intro_cutscene', events, player, cultist, dialogue, items) # Play intro cutscene
             sequence('cabin', events, player, cultist, dialogue, items)
+
             os.system('cls' if os.name == 'nt' else 'clear')
+            
             print("\nWelcome to Whispering Dark. \nType 'quit' to exit at any time and 'pause' for the menu.")
             input("\n\nPress enter to continue...")
 
@@ -77,6 +72,7 @@ if __name__ == '__main__':
         loaded = True
         os.system('cls' if os.name == 'nt' else 'clear')
         started = True
+        player.addToInventory("")
 
         while True:
             
@@ -95,7 +91,6 @@ if __name__ == '__main__':
                     print(f"Thanks for playing {player.getCustomName()}. Goodbye!")
                     time.sleep(2)
                     flag = True
-                    # os.system('cls')
                     break
 
                 #Read commands for movement, pause, item use, etc.
@@ -140,14 +135,11 @@ if __name__ == '__main__':
                     
                     current_location, moved = move_player(newcommand, current_location, locations, player.getInventory())
 
-                    if not moved:
-                        input("\nPress enter to continue...")
-
+                    if moved:
+                       
                     #Check current location to initiate text and fight sequences
 
-                    else:
-
-                        if current_location['id'] == 'trail' and 'axe' in player.getInventory():
+                        if current_location['id'] == 'trail':
                             sequence('wendigo_confrontation', events, player, wendigo, dialogue, items)
                         
 
@@ -168,6 +160,9 @@ if __name__ == '__main__':
 
                         else:    
                             continue
+
+                    else:
+                        continue
 
                     if player.checkIsDead() : # Check if player is dead
                             print(f"Thanks for playing {player.getCustomName()}. Goodbye!")
