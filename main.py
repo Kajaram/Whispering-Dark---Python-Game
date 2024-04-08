@@ -1,12 +1,9 @@
 from Functions.locationFunctions import get_location, describe_location
 from Functions.movement import move_player
-from Functions.engine import load_world,check_event_happened, set_event_happened, load_world
-from Functions.intro import sequence
-from Functions.quickTime import timer
+from Functions.engine import load_world, load_world
+from Functions.sequences import sequence
 from Objects.Character import Character
-from Functions.fight import fightFunc
 from Functions.open import openItem
-from Functions.save_system import save_game, load_game
 from Functions.mainMenu import mainMenu
 from Factories.characterFactory import characterFactory
 import os

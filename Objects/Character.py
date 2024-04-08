@@ -1,5 +1,5 @@
 from Functions.locationFunctions import get_location
-from Functions.intro import sequence
+from Functions.sequences import sequence
 import time
 import os
 

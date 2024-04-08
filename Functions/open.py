@@ -1,6 +1,6 @@
 import time
 from Objects.Character import Character  # Import Character class for player object handling
-from Functions.intro import sequence
+from Functions.sequences import sequence
 import os
 
 def openItem(current_location, playerInventory, noun, player, events) :
