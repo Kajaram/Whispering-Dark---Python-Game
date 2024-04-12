@@ -6,26 +6,26 @@ from Objects.Character import Character
 from Functions.open import openItem
 from Functions.mainMenu import mainMenu
 from Factories.characterFactory import characterFactory
+from Functions.newSave import load_game_state
 import os
 import time
 
 # Change current working directory to the directory where the script is located
 os.chdir(os.path.dirname(__file__))
 
-
+comDict = {"n" : "north", "e":"east", "w":"west", "s":"south"}
 world = load_world('Whispering-Dark Updated.json', 'world')  # Load world data from JSON 
-# print(world)
 locations = world['locations'] # Load location data 
 events = world['events'] # Load event data
 dialogue = world['dialogue'] # Load dialogue data
 items = world['items'] # Load item data
-
 current_location = get_location('cabin', locations) # Get initial location
 
 factory = characterFactory()
 
 cultist = factory.makeCharacter('cultist')
 wendigo = factory.makeCharacter('wendigo')
+player = factory.makeCharacter('player')
 
 
 flag = False
@@ -36,13 +36,13 @@ loaded = False
 if __name__ == '__main__':
 
     while True:
-
+        
         if flag: break
-        newWorld, loaded1 = mainMenu(world, loaded, started)
+        loaded1, freshStart = mainMenu(wendigo, cultist, world, loaded, player, False)
         started = True
         #Check if player has loaded from a save state. If not, start new game
 
-        if not loaded1:
+        if not loaded1 and freshStart:
             myName = input('\nEnter your Name:\n\n').strip()
             print("\nWelcome,", myName)
             input("\nPress enter...\n")
@@ -58,18 +58,18 @@ if __name__ == '__main__':
             input("\n\nPress enter to continue...")
 
 
-        else: # Load game state if loaded from save
-            world = newWorld
-            locations = world['locations'] # Load location data 
-            events = world['events'] # Load event data
-            dialogue = world['dialogue'] # Load dialogue data
-            items = world['items'] # Load item data
-            current_location = get_location(world['current_location'], locations) # Get initial location
+        elif loaded1 and freshStart: # Load game state if loaded from save
+            player, wendigo, cultist, newWorld = load_game_state('save.pkl')
+            locations = newWorld['locations'] # Load location data 
+            events = newWorld['events'] # Load event data
+            dialogue = newWorld['dialogue'] # Load dialogue data
+            items = newWorld['items'] # Load item data
+            current_location = get_location(newWorld['current_location'], locations) # Get initial location
+            
                 
         loaded = True
         os.system('cls' if os.name == 'nt' else 'clear')
         started = True
-        player.addToInventory("")
 
         while True:
             
@@ -93,15 +93,16 @@ if __name__ == '__main__':
                 #Read commands for movement, pause, item use, etc.
 
                 elif command[0] in ['pause', 'menu','start','options']: # Open game menu
-                    newWorld, loaded2 = mainMenu(world,loaded)
+                    loaded1, loaded2 = mainMenu(wendigo, cultist, world, loaded, player)
 
-                    if loaded2:
-                                world = newWorld
-                                locations = world['locations'] # Load location data 
-                                events = world['events'] # Load event data
-                                dialogue = world['dialogue'] # Load dialogue data
-                                items = world['items'] # Load item data
-                                current_location = get_location(world['current_location'], locations) # Get initial location
+                    if loaded1:
+              
+                        player, wendigo, cultist, newWorld = load_game_state('save.pkl')
+                        locations = newWorld['locations'] # Load location data 
+                        events = newWorld['events'] # Load event data
+                        dialogue = newWorld['dialogue'] # Load dialogue data
+                        items = newWorld['items'] # Load item data
+                        current_location = get_location(newWorld['current_location'], locations) # Get initial location
 
                 
                 elif command[0] == 'inventory': # Show player inventory
@@ -114,23 +115,13 @@ if __name__ == '__main__':
 
                     if command[0] in ['n', 'e', 'w', 's']: # filter input for json requests
 
-                        newcommand = command[0]
+                        newcommand = comDict[command[0]]
 
-                        if command[0] == 'n':
-                            newcommand = 'north'
-
-                        elif command[0] == 'e':
-                            newcommand = 'east'
-                        
-                        elif command[0] == 's':
-                            newcommand = 'south'
-                        
-                        elif command[0] == 'w':
-                            newcommand = 'west'
                     else:
                         newcommand = command[1]
                     
                     current_location, moved = move_player(newcommand, current_location, locations, player.getInventory())
+                    world['current_location'] = current_location['id']
 
                     if moved:
                        

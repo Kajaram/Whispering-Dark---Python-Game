@@ -1,12 +1,11 @@
 import os
-from Functions.save_system import delete_save, save_game
 from Functions.engine import get_location, load_world2
 from Functions.centerprint import centered_print
-from Functions.save_system import load_game, save_game
+from Functions.newSave import load_game_state, save_game_state, delete_save
 
-def mainMenu(world, loaded, started=True) :
-  
-  
+def mainMenu(wendigo, cultist, world, loaded, player, started=True) :
+
+
     while True:
 
         #clear the console and prompt user for 
@@ -21,32 +20,22 @@ def mainMenu(world, loaded, started=True) :
         if action == 'new':  # Indicate a new game should be started
             centered_print("\nNew Game Started..\n\nPress enter...")
             loaded = True
-            return world, False
+            return False, True
         
         elif action == 'load':
-             
-            newWorld = load_world2('savegame.json')
-            loaded=True
-
-            if not newWorld:
-                input("Game file is empty.. \n\nPress enter")
-                continue
-                
-            else:
-                centered_print("Game loaded")
-                input("\nPress enter to continue...")
-                return newWorld, True
+            if not started:
+                return True, True
+            else: 
+                return True, False
             
 
         elif action == 'save':
                 # Attempt to save the game
-                if save_game(world, 'savegame.json'):
-                    input("\nPress enter to continue...")
-                    continue
-                else:
-                    print("\nFailed to save game.")
-                    input("\nPress enter to continue...")
-                    continue
+
+                save_game_state(player, wendigo, cultist, world, 'save.pkl')
+                input("Press enter to continue..")
+                continue
+
 
         elif action == 'delete': # Delete save data
             delete_save()
@@ -56,9 +45,10 @@ def mainMenu(world, loaded, started=True) :
         elif action == 'resume':
             os.system('cls' if os.name == 'nt' else 'clear')
             loaded = True
-            return world, True
+            return False, False
 
         else:
             input("Unrecognized command, press enter...")
             continue
 
+            

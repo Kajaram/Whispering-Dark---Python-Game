@@ -9,7 +9,7 @@ class Character:
         self.playerName = "" # Character's player or character name
         self._health = 0 # Character's health
         self._strength = 0 # Character's strength
-        self._inventory = [] # Character's inventory, ensuring it's a list if None is passed
+        self._inventory = [""] # Character's inventory, ensuring it's a list if None is passed
         self.isDead = False # Flag to check if the character is dead
         self.customName = ''  # Custom name for the character
 
@@ -39,7 +39,8 @@ class Character:
     def showInventory(self):
         print(f"Items in {self.customName}'s inventory")
         for item in self._inventory:
-            print(item)
+            if item != "":
+                print(f"\n ~ {item}")
 
     def getName(self):
         return self.playerName
